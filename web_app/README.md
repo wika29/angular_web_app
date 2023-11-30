@@ -2,8 +2,6 @@
 Wenn du eine Fehlermeldung wie: "You seem to not be depending on "@angular/core" hast,
 run: "npm install" im projectFolder
 
-
-
 Angenommen deine Commands funktionieren nicht und du bekommst eine Fehlermeldung wie: 
 "angular this command is not available when running piutside a workspace",
 dann stelle sicher das du im richtigen ProjectFolder bist. 
