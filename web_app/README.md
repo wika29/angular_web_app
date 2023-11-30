@@ -1,3 +1,10 @@
+# Neu hier?
+Wenn du eine Fehlermeldung wie: "You seem to not be depending on "@angular/core" hast,
+run: "npm install" im projectFolder
+
+Angenommen deine Commands funktionieren nicht und du bekommst eine Fehlermeldung wie: 
+"angular this command is not available when running piutside a workspace",
+dann stelle sicher das du im richtigen ProjectFolder bist. 
 # WebApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
