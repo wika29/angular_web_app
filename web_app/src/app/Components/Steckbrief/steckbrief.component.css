@@ -1,0 +1,41 @@
+.overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    width: 100%; /* Adjust accordingly */
+    max-width: 60%; /* Adjust accordingly */
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+  }
+
+.overlay-content {
+  min-width: 400px;
+  min-height: 200px;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.rounded-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: left;
+}
+
+.input-rounded {
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.input-large {
+  width: 200px;
+  height: 100px;
+}
