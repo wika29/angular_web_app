@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+}
+
+.sidebar {
+  margin: 5px;
+  width: 250px;
+  padding: 20px;
+  flex-direction: column; /* Änderung hier für die Anordnung der Buttons */
+  display: flex;
+}
+
+.vertical-line {
+  border-left: 3px solid black;
+  height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-item {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  margin: 5px;
+}

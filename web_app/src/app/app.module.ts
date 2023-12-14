@@ -1,16 +1,21 @@
+// app.module.ts
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppComponent} from './app.component';
-import {InitialScreenComponent} from './screens/initial_screen/initial-screen.component';
+import {FormsModule} from "@angular/forms";
+import {SizedBoxComponent} from './Components/Button/sized-box/sized-box.component';
+import {SearchFieldComponent} from './Components/Button/search-field/search-field.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    InitialScreenComponent
+    SizedBoxComponent,
+    SearchFieldComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
