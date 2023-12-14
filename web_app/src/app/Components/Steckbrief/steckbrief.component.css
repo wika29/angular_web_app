@@ -3,20 +3,20 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    display: flex;
-    width: 100%; /* Adjust accordingly */
-    max-width: 60%; /* Adjust accordingly */
+    max-width: 25%; /* Adjust accordingly */
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     z-index: 999;
   }
 
 .overlay-content {
   min-width: 400px;
   min-height: 200px;
-  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  /* background-color: #ffffff; */
   padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 .rounded-image {
@@ -25,17 +25,26 @@
   border-radius: 50%;
 }
 
-.input-wrapper {
+.row {
   display: flex;
-  align-items: left;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
+
+.column {
+flex-direction: column;
+flex-basis: 100%;
+flex: 1;
+}
+
 
 .input-rounded {
   border-radius: 10px;
   margin: 5px;
+  height: 15px;
 }
 
 .input-large {
-  width: 200px;
   height: 100px;
 }
