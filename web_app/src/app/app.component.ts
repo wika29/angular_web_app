@@ -21,8 +21,8 @@ export class AppComponent {
   }
 
   protected readonly style = style;
-
   title = 'web_app';
+  //boolean um den Steckbrief anzuzeigen
   showOverlay: boolean = true; // turn back to false when done
 
   openOverlay() {
