@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import {OptionButton} from "../widgets/steckbrief_button/option_button.component";
+import {AppComponent} from './app.component';
+import {InitialScreenComponent} from './screens/initial_screen/initial-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    OptionButton
+    InitialScreenComponent
   ],
   imports: [
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent, OptionButton]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
