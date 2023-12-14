@@ -21,4 +21,11 @@ export class AppComponent {
   }
 
   protected readonly style = style;
+
+  title = 'web_app';
+  showOverlay: boolean = true; // turn back to false when done
+
+  openOverlay() {
+      this.showOverlay = !this.showOverlay;
+  }
 }

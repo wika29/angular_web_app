@@ -1,0 +1,39 @@
+
+<div *ngIf="showOverlay" class="overlay">
+    <div class="overlay-content">
+        <div class="container">
+            <div class="row">
+                <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
+            </div>
+            <div class="row">
+                <div class="column">
+                    <form>
+                        <input type="text" class="input-rounded" placeholder="Vorname">
+                        <input type="text" class="input-rounded" placeholder="Straße">
+                        <input type="text" class="input-rounded" placeholder="PLZ">
+                        <input type="text" class="input-rounded" placeholder="Ort">
+                        <input type="text" class="input-rounded"  placeholder="Telefonnummer">
+                    </form>
+                </div>
+                <div class="column">
+                    <input type="text" class="input-rounded" placeholder="Nachname">
+                </div>
+                <div class="column" style="display: flex; flex-wrap: wrap; justify-content: right; align-content: end;">
+                    <input type="text" class="input-rounded" style="width: 15px;" value="ID" name="ID-field" id="" readonly>
+                </div>
+            </div>
+            <div class="row column">
+                <form>                   
+                    <textarea class="input-rounded input-large" placeholder="Skills" ></textarea>
+                </form>
+            </div>
+            <div class="row">
+                <button>Löschen</button>                
+                <button>Aktualisieren</button>                
+                <button>Speichern</button>                
+            </div>
+                <!--Beispiel: https://codepen.io/meodai/pen/rNedxBa -->
+        </div>
+    </div>
+</div>
+
