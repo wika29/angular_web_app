@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {style} from "@angular/animations";
+import {SteckbriefComponent} from "./Components/Steckbrief/steckbrief.component";
 
 @Component({
   selector: 'app-root',
@@ -7,14 +8,9 @@ import {style} from "@angular/animations";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  itemList: string[] = [
-    "test1",
-    "test2",
-    "test2",
-    "test2",
-    "test2",
-    "test2",
-  ]; // Hier können deine Elemente aus der Liste eingefügt werden
+  itemList: any[] = [
+    SteckbriefComponent,
+  ];
   onButtonClick(buttonName: string) {
     // Hier kannst du die Logik für die Button-Klicks hinzufügen
     console.log(`${buttonName} clicked`);
@@ -23,7 +19,7 @@ export class AppComponent {
   protected readonly style = style;
   title = 'web_app';
   //boolean um den Steckbrief anzuzeigen
-  showOverlay: boolean = true; // turn back to false when done
+  showOverlay: boolean = false; // turn back to false when done
 
   openOverlay() {
       this.showOverlay = !this.showOverlay;
