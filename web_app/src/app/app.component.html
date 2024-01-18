@@ -7,11 +7,12 @@
     <app-sized-box></app-sized-box>
     <button (click)="onButtonClick('Button 2')">Button 2</button>
     <app-sized-box></app-sized-box>
-
+    
   </div>
   <div class="vertical-line"></div>
   <div class="content">
-    <div *ngFor="let item of itemList" class="grid-item">{{ item }}</div>
+    <!-- <div *ngFor="let item of itemList" class="grid-item">{{ item }}</div> -->
+    <mat-slide-toggle>Toggle me!</mat-slide-toggle>
   </div>
 </div>
 <!-- Toolbar -->

@@ -7,19 +7,20 @@ import {SteckbriefComponent} from "./Components/Steckbrief/steckbrief.component"
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   itemList: any[] = [
     SteckbriefComponent,
   ];
   onButtonClick(buttonName: string) {
-    // Hier kannst du die Logik für die Button-Klicks hinzufügen
+    // logik für Button einbauen
     console.log(`${buttonName} clicked`);
   }
 
   protected readonly style = style;
   title = 'web_app';
   //boolean um den Steckbrief anzuzeigen
-  showOverlay: boolean = false; // turn back to false when done
+  showOverlay: boolean = true; // turn back to false when done
 
   openOverlay() {
       this.showOverlay = !this.showOverlay;

@@ -7,6 +7,7 @@ import {SizedBoxComponent} from './Components/Button/sized-box/sized-box.compone
 import {SearchFieldComponent} from './Components/Button/search-field/search-field.component';
 import {SteckbriefComponent} from './Components/Steckbrief/steckbrief.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-  ],
+    MatSlideToggleModule,
+  ],  
   providers: [],
   bootstrap: [AppComponent]
 })
