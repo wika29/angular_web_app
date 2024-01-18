@@ -1,0 +1,15 @@
+/* styles.css */
+
+OptionButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50; /* Grün als Beispiel, ändere dies nach Bedarf */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049; /* Dunkleres Grün als Beispiel für Hover-Effekt */
+}

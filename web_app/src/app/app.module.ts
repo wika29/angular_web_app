@@ -8,6 +8,9 @@ import {SearchFieldComponent} from './Components/Button/search-field/search-fiel
 import {SteckbriefComponent} from './Components/Steckbrief/steckbrief.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     FormsModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-  ],  
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

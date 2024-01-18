@@ -1,40 +1,90 @@
-<div *ngIf="showOverlay" class="overlay">
-    <div class="overlay-content">
-        <div class="container">
-            <div class="row">
-                <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
-            </div>
-            <div class="row">
-                <div class="column">
-                    <form>
-                        <input type="text" class="input-rounded" placeholder="Vorname">
-                        <input type="text" class="input-rounded" placeholder="Straße">
-                        <input type="text" class="input-rounded" placeholder="PLZ">
-                        <input type="text" class="input-rounded" placeholder="Ort">
-                        <input type="text" class="input-rounded"  placeholder="Telefonnummer">
-                    </form>
-                </div>
-                <div class="column">
-                    <input type="text" class="input-rounded" placeholder="Nachname">
-                </div>
-                <div class="column" style="display: flex; flex-wrap: wrap; justify-content: right; align-content: end;">
-                    <input type="text" class="input-rounded" style="width: 15px;" value="ID" name="ID-field" id="" readonly>
-                </div>
-            </div>
-            <div class="row column">
-                <form>                   
-                    <textarea class="input-rounded input-large" placeholder="Skills" ></textarea>
-                </form>
-            </div>
-            <div class="row">
-                <button>Löschen</button>                
-                <button>Aktualisieren</button>                
-                <button>Speichern</button>                
-            </div>
-                <!--Beispiele:-->
+<!-- <div *ngIf="showOverlay" class="overlay">
+   <div class="overlay-content">
+       <div class="container">
+           <div class="row">
+               <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
+           </div>
+           <div class="row">
+               <div class="column">
+                   <form>
+                       <input type="text" class="input-rounded" placeholder="Vorname">
+                       <input type="text" class="input-rounded" placeholder="Straße">
+                       <input type="text" class="input-rounded" placeholder="PLZ">
+                       <input type="text" class="input-rounded" placeholder="Ort">
+                       <input type="text" class="input-rounded"  placeholder="Telefonnummer">
+                   </form>
+               </div>
+               <div class="column">
+                   <input type="text" class="input-rounded" placeholder="Nachname">
+               </div>
+               <div class="column" style="display: flex; flex-wrap: wrap; justify-content: right; align-content: end;">
+                   <input type="text" class="input-rounded" style="width: 15px;" value="ID" name="ID-field" id="" readonly>
+               </div>
+           </div>
+           <div class="row column">
+               <form>
+                   <textarea class="input-rounded input-large" placeholder="Skills" ></textarea>
+               </form>
+           </div>
+           <div class="row">
+               <button>Löschen</button>
+               <button>Aktualisieren</button>
+               <button>Speichern</button>
+           </div>
+               Beispiele:-->
                 <!-- https://codepen.io/meodai/pen/rNedxBa -->
                 <!-- https://v6.material.angular.io/components/dialog/overview -->
-        </div>
+<!--        </div>
     </div>
-</div>
+</div> -->
 
+<mat-card *ngIf="showOverlay" class="overlay">
+  <mat-card-content>
+    <div class="container">
+      <div class="row">
+        <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="input-field">
+          <input matInput placeholder="Vorname">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="input-field">
+          <input matInput placeholder="Nachname">
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="small-field">
+          <input matInput placeholder="ID" readonly>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="input-field">
+          <input matInput placeholder="Straße">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="input-field">
+          <input matInput placeholder="PLZ">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="input-field">
+          <input matInput placeholder="Ort">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="fill" class="input-field">
+          <input matInput placeholder="Telefonnummer">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <form>
+          <textarea matInput placeholder="Skills"></textarea>
+        </form>
+      </div>
+      <div class="row">
+        <button mat-button>Löschen</button>
+        <button mat-button>Aktualisieren</button>
+        <button mat-button>Speichern</button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
