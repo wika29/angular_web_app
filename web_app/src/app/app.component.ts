@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {style} from "@angular/animations";
 import {SteckbriefComponent} from "./Components/Steckbrief/steckbrief.component";
+import { ApiService } from './Service/API/swaggerConnection';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,11 @@ import {SteckbriefComponent} from "./Components/Steckbrief/steckbrief.component"
 })
 
 export class AppComponent {
+  responseData: any;
+  constructor(private apiService: ApiService){
+    console.log("hello")
+  }
+  
   itemList: any[] = [
     SteckbriefComponent,
   ];
@@ -24,5 +30,15 @@ export class AppComponent {
 
   openOverlay() {
       this.showOverlay = !this.showOverlay;
+  } 
+  
+  ngOnInit(): void {
+    this.apiService.getAllRequestData().subscribe(data => {
+      this.responseData = data;
+      if(this.responseData == null || this.responseData == undefined){
+        console.error("Response data is empty!")
+      }
+      console.log(this.responseData)
+    });
   }
 }
