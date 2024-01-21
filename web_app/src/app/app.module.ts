@@ -9,13 +9,16 @@ import {SteckbriefComponent} from './Components/Steckbrief/steckbrief.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
+import {MatInputModule} from "@angular/material/input";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     AppComponent,
     SizedBoxComponent,
     SearchFieldComponent,
-    SteckbriefComponent,
+    SteckbriefComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatSlideToggleModule,
     HttpClientModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
   ],  
   providers: [],
   bootstrap: [AppComponent]
