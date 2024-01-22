@@ -32,7 +32,8 @@ export class AppComponent {
   
   ngOnInit(): void {   
     let apiService = new ApiService()
-    apiService.getAllEmployees(true).then((data) => { 
+
+   /*  apiService.getAllEmployees(true).then((data) => { 
           data.forEach(element => {
               let eModel = new EmployeeModel(element.id,
                                             element.firstName,
@@ -45,7 +46,8 @@ export class AppComponent {
             this.modelEmployees.push(eModel)
 
           });
-      });
+      }); */
+
     };
 }
 

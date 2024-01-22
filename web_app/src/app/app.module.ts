@@ -12,23 +12,41 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatInputModule} from "@angular/material/input";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { SideNavComponent } from './Components/side-nav/side-nav.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SizedBoxComponent,
     SearchFieldComponent,
-    SteckbriefComponent
+    SteckbriefComponent,
+    SideNavComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatSlideToggleModule,
     HttpClientModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatTooltipModule,
   ],  
   providers: [],
   bootstrap: [AppComponent]
