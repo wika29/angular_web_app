@@ -7,6 +7,5 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./side-nav.component.css']
 })
 export class SideNavComponent {
-  @Input() cardTitle!: string;
-  @Input() cardContent!: string;  
+
 }

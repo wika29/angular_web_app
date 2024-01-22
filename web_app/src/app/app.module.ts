@@ -21,6 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MiniCardComponent } from './Components/mini-card/mini-card.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SizedBoxComponent,
     SearchFieldComponent,
     SteckbriefComponent,
-    SideNavComponent
+    SideNavComponent,
+    MiniCardComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatExpansionModule,
     MatTooltipModule,
     MatFormFieldModule,
+    FlexLayoutModule,
   ],  
   providers: [],
   bootstrap: [AppComponent]

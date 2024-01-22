@@ -17,12 +17,6 @@ export class AppComponent {
   smallHtmlImages: HTMLDivElement[] = [];
   overlay: boolean = true; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
   @ViewChild( SteckbriefComponent) steckbriefComponent!: SteckbriefComponent;
-
-  cards = [
-    { title: 'Card 1', content: 'Lorem ipsum dolor sit amet' },
-    { title: 'Card 2', content: 'Consectetur adipiscing elit' },
-    { title: 'Card 3', content: 'Sed do eiusmod tempor incididunt' }
-  ]; 
  
   protected readonly style = style;
 

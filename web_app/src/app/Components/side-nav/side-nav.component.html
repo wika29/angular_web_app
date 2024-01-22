@@ -12,14 +12,14 @@
         
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
-       
-        <mat-card>
-            <mat-card-title>{{ cardTitle }}</mat-card-title>
-            <mat-card-content>
-              {{ cardContent }}
-            </mat-card-content>
-        </mat-card>
+    <mat-sidenav-content>                      
+        <app-mini-card ></app-mini-card>      
+        <div #overlay>
+                <app-steckbrief></app-steckbrief>
+        </div>
+        
+        <div class="hiddenContainer" #hidden>
+        </div>
           
     </mat-sidenav-content>
 </mat-sidenav-container> 

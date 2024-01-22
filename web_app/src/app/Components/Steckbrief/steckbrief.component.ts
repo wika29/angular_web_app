@@ -11,7 +11,7 @@ import { MatCard } from '@angular/material/card';
   template: '<mat-card-content #steckbrief></mat-card-content>',
 })
 export class SteckbriefComponent implements AfterViewInit {
-  @Input() showOverlay: boolean = true;
+  @Input() showOverlay: boolean = false;
   @ViewChild('steckbrief', {static:false}) card!: ElementRef ;  
 
   ngAfterViewInit(): void {
