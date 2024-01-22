@@ -12,7 +12,7 @@
   <div class="vertical-line"></div>
   <div class="content">
     <!-- <div *ngFor="let item of itemList" class="grid-item">{{ item }}</div> -->
-      <div *ngIf="responseData">
+      <div *ngIf="modelEmployees">
         <table>
           <thead>
             <tr>
@@ -25,13 +25,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of responseData">
-              <td>{{ item[0].firstName }}</td>
-              <td>{{ item[0].lastName }}</td>   
-              <td>{{ item[0].street }}</td>   
-              <td>{{ item[0].postcode }}</td>   
-              <td>{{ item[0].phone }}</td>   
-              <td>{{ item[0].skill }}</td>   
+            <tr *ngFor="let person of modelEmployees">
+              <td>{{ person.firstName }}</td>             
             </tr>
           </tbody>
         </table>

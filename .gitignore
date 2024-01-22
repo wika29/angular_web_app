@@ -29,4 +29,3 @@ backend/src/app/employee-list/employee-list.component.ts
 backend/src/assets/.gitkeep
 backend/src/environments/environment.prod.ts
 backend/src/environments/environment.ts
-web_app/src/app/Service/API/swaggerConnection.ts
