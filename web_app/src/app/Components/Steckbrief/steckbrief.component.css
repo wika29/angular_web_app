@@ -1,7 +1,15 @@
 .overlay {
-  left: 40%; /* Set the left edge at half the width of the browser window */
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%; /* Set the left edge at half the width of the browser window */
+  left: 50%; /* Set the left edge at half the width of the browser window */
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  width: 300px; /* Set the width of the component */
   width: 600px; /* Set the width of the component */
   border-radius: 5px;
 }

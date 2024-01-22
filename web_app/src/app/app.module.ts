@@ -20,8 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
-
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -47,6 +46,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatIconModule,
     MatExpansionModule,
     MatTooltipModule,
+    MatFormFieldModule,
   ],  
   providers: [],
   bootstrap: [AppComponent]

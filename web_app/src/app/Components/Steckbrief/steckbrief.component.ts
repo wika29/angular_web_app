@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./steckbrief.component.css']
 })
 export class SteckbriefComponent {
-  @Input() showOverlay: boolean = false;
+  @Input() showOverlay: boolean = true;
 }
 
 

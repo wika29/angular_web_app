@@ -12,7 +12,8 @@ import { EmployeeModel } from './Model/PersonModel'
 export class AppComponent {
   title = 'web_app';
   modelEmployees: EmployeeModel[] = [];
-  showOverlay: boolean = false; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
+  overlay: boolean = false; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
+
   
   itemList: any[] = [
     SteckbriefComponent,
@@ -20,16 +21,15 @@ export class AppComponent {
   protected readonly style = style;
 
   constructor(){}
-  
-  onButtonClick(buttonName: string) {
-    console.log(`${buttonName} clicked`);
+
+  //Steckbrief control
+  showOverlay() {
+    this.overlay = true;
   }
-
-
-  openOverlay() {
-      this.showOverlay = !this.showOverlay;
-  } 
-  
+  hideOverlay() {
+    this.overlay = false;
+  }
+ 
   ngOnInit(): void {   
     let apiService = new ApiService()
 
