@@ -1,53 +1,54 @@
-import {Component} from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import {style} from "@angular/animations";
 import { SteckbriefComponent } from "./Components/Steckbrief/steckbrief.component";
-import { ApiService } from './Service/API/swaggerConnection';
 import { EmployeeModel } from './Model/PersonModel'
+import { LocationStrategy } from '@angular/common';
+import { makeImage } from './Service/html2Image/html2canvas';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  template:`<app-steckbrief></app-steckbrief>`
 })
 export class AppComponent {
   title = 'web_app';
   modelEmployees: EmployeeModel[] = [];
-  overlay: boolean = false; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
+  smallHtmlImages: HTMLDivElement[] = [];
+  overlay: boolean = true; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
+  @ViewChild( SteckbriefComponent) steckbriefComponent!: SteckbriefComponent;
 
-  
+
+  forParent:string ="this is for parent!"
+  forChild:string = "this if for child from parent"
+ 
   itemList: any[] = [
     SteckbriefComponent,
   ];
   protected readonly style = style;
 
-  constructor(){}
+  ngAfterViewInit(){
+    const element = this.steckbriefComponent.card
+    /* const apiService = new ApiService()
+    apiService.getAllEmployees(true).then((data) => { 
+      data.forEach(element => {
+        let employee = new EmployeeModel(element.id,
+          element.firstName,
+          element.lastName,
+          element.street,
+          element.postcode,
+          element.city,
+          element.phone)
+          this.modelEmployees.push(employee)
+          let image = new makeImage().capture(this.card)
+          if(image != null)
+          this.smallHtmlImages.push(image)
+      });
+    });  */ 
+    
+    // new makeImage().capture(element)
 
-  //Steckbrief control
-  showOverlay() {
-    this.overlay = true;
   }
-  hideOverlay() {
-    this.overlay = false;
-  }
- 
-  ngOnInit(): void {   
-    let apiService = new ApiService()
 
-   /*  apiService.getAllEmployees(true).then((data) => { 
-          data.forEach(element => {
-              let eModel = new EmployeeModel(element.id,
-                                            element.firstName,
-                                            element.lastName,
-                                            element.street,
-                                            element.postcode,
-                                            element.city,
-                                            element.phone)
-              // console.log("elem: " + eModel.toString())
-            this.modelEmployees.push(eModel)
-
-          });
-      }); */
-
-    };
 }
 

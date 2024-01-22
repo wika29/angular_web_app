@@ -1,50 +1,52 @@
-<mat-card *ngIf="showOverlay" class="overlay">
-  <mat-card-content>
-    <div class="container">
-      <div class="row">
-        <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
+  <mat-card *ngIf="showOverlay"  class="overlay" >
+    <mat-card-content #steckbrief>
+      <div class="container">
+        <div class="row">
+          <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill" class="input-field">
+            <input matInput placeholder="Vorname">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="input-field">
+            <input matInput placeholder="Nachname">
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="small-field">
+            <input matInput placeholder="ID" readonly>
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill" class="input-field">
+            <input matInput placeholder="Straße">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill" class="input-field">
+            <input matInput placeholder="PLZ">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill" class="input-field">
+            <input matInput placeholder="Ort">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="fill" class="input-field">
+            <input matInput placeholder="Telefonnummer">
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <form>
+            <textarea matInput placeholder="Skills"></textarea>
+          </form>
+        </div>
+        <div class="row">
+          <button mat-button>Löschen</button>
+          <!-- <button mat-button>Aktualisieren</button> -->
+          <button mat-button>Speichern</button>
+        </div>
       </div>
-      <div class="row">
-        <mat-form-field appearance="fill" class="input-field">
-          <input matInput placeholder="Vorname">
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="input-field">
-          <input matInput placeholder="Nachname">
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="small-field">
-          <input matInput placeholder="ID" readonly>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="fill" class="input-field">
-          <input matInput placeholder="Straße">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="fill" class="input-field">
-          <input matInput placeholder="PLZ">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="fill" class="input-field">
-          <input matInput placeholder="Ort">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field appearance="fill" class="input-field">
-          <input matInput placeholder="Telefonnummer">
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <form>
-          <textarea matInput placeholder="Skills"></textarea>
-        </form>
-      </div>
-      <div class="row">
-        <button mat-button>Löschen</button>
-        <button mat-button>Aktualisieren</button>
-        <button mat-button>Speichern</button>
-      </div>
-    </div>
-  </mat-card-content>
-</mat-card>
+    </mat-card-content>
+  </mat-card>
+
+

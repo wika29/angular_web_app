@@ -1,26 +1,34 @@
+import {ElementRef}  from '@angular/core';
 import html2canvas from 'html2canvas';
 
+export class makeImage {
 
-
-export class captureDivAsPNG {
-
-    public capture(divId: string): HTMLDivElement | null {
-        let element = document.getElementById(divId); 
-        if(element != null){
-            html2canvas(element).then((canvas) => {
-                const imageWidth = parseFloat(canvas.style.width) / 4;
-                const imageHeight = parseFloat(canvas.style.height) / 4;
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');    
-                const imageContainer = document.createElement('div');
-                const image = document.createElement('img');
-                image.src = link.href;
-                imageContainer.appendChild(image);
-                imageContainer.style.width = imageWidth.toString();
-                imageContainer.style.height = imageHeight.toString();
-                return document.body.appendChild(imageContainer);  
-            });
-        }
-        return null;
-    }          
+    public capture(element: ElementRef): Promise<HTMLImageElement[]> {
+        return new Promise<HTMLImageElement[]>((resolve, reject) => {
+            if (element != null) {
+                const elementWidth = element.nativeElement.offsetWidth;
+                const elementHeight = element.nativeElement.offsetHeight;
+    
+                html2canvas(element.nativeElement, { width: elementWidth, height: elementHeight }).then((canvas) => {
+                    const imageWidth = canvas.width / 4;
+                    const imageHeight = canvas.height / 4;
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    const imageContainer = document.createElement('div');
+                    const image = document.createElement('img');
+                    image.style.width = imageWidth.toString() + 'px';
+                    image.style.height = imageHeight.toString() + 'px';
+                    image.src = link.href;
+                    imageContainer.appendChild(image);
+                    document.body.appendChild(imageContainer);
+    
+                    // Create an array of captured image objects
+                    const capturedImages: HTMLImageElement[] = [image];
+                    resolve(capturedImages);
+                });
+            } else {
+                reject('Element is null');
+            }
+        });
+    }    
 }
