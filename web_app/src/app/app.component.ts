@@ -18,13 +18,12 @@ export class AppComponent {
   overlay: boolean = true; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
   @ViewChild( SteckbriefComponent) steckbriefComponent!: SteckbriefComponent;
 
-
-  forParent:string ="this is for parent!"
-  forChild:string = "this if for child from parent"
+  cards = [
+    { title: 'Card 1', content: 'Lorem ipsum dolor sit amet' },
+    { title: 'Card 2', content: 'Consectetur adipiscing elit' },
+    { title: 'Card 3', content: 'Sed do eiusmod tempor incididunt' }
+  ]; 
  
-  itemList: any[] = [
-    SteckbriefComponent,
-  ];
   protected readonly style = style;
 
   ngAfterViewInit(){

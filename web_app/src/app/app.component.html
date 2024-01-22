@@ -1,6 +1,11 @@
 <app-side-nav style="outline: 5px solid black;">
+
+    
 </app-side-nav>
 <div #overlay>
+    <div *ngFor="let card of cards">
+        <app-side-nav [cardTitle]="card.title" [cardContent]="card.content"></app-side-nav>
+    </div>
     <div style="outline: 5px solid black;">
         <app-steckbrief></app-steckbrief>
     </div>
