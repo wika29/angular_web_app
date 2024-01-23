@@ -1,6 +1,6 @@
 import { Component, Input, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { DataService } from 'src/app/Service/API/data-service.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { DataSharingService } from 'src/app/Service/data-sharing/data-sharing.service';
 
 @Component({
   selector: 'app-steckbrief',
@@ -10,8 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class SteckbriefComponent implements OnInit {
   @Input() showOverlay: boolean = true;
-  @ViewChild('steckbrief', {static:false}) card!: ElementRef ;  
- 
+  @ViewChild('steckbrief', {static:false}) card!: ElementRef ;   
 
   firstName!: string;
   lastName!: string;
@@ -22,7 +21,7 @@ export class SteckbriefComponent implements OnInit {
   phoneNumber!: string;
   skills!: string;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private dataSharingService: DataSharingService) {}
 
   ngOnInit(): void {
     this.dataService.firstName$.subscribe((value) => (this.firstName = value));
@@ -33,6 +32,7 @@ export class SteckbriefComponent implements OnInit {
     this.dataService.city$.subscribe((value) => (this.city = value));
     this.dataService.phoneNumber$.subscribe((value) => (this.phoneNumber = value));
     this.dataService.skills$.subscribe((value) => (this.skills = value));
+    this.dataSharingService.getBigCardVisibility().subscribe((value) => (this.showOverlay = value));
   }
 
   resetFields(): void {

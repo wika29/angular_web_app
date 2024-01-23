@@ -1,5 +1,5 @@
 <div class="card-container">
-  <mat-card class="custom-card" *ngFor="let card of cardData" [style.background-image]="'url(' + card.backgroundImage + ')'">
+  <mat-card class="custom-card" *ngFor="let card of cardData" [style.background-image]="'url(' + card.backgroundImage + ')'" (click)="cardClicked(card)">
     {{ card.title }}
   </mat-card>
 </div>

@@ -45,7 +45,7 @@ export class AppComponent {
   removeCard(employeeModel: EmployeeModel): void {
     this.cardData = this.cardData.filter(card => card.employeeModel !== employeeModel);   
   }
-  
+
   ngAfterViewInit(){ 
     this.apiService.getAllEmployees().then((data) => {  
       const updatePromises: Promise<void>[] = [];
@@ -68,7 +68,7 @@ export class AppComponent {
             updatePromises.push(updatePromise);   
           });     
         });
-        this.sideNavComponent.steckbriefComponent.showOverlay = true; // anzeigen
+
         // console.log(this.sideNavComponent.appSteckbriefRef.nativeElement)        
         // 
       }); 
