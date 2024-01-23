@@ -38,8 +38,8 @@ export class SideNavComponent {
     }); */
   }
 
- /*  private cardVisibility = new BehaviorSubject<>();
-  filterCardData(searchTerm: string): Observable<MiniCard[]> {
+
+/*   filterCardData(searchTerm: string): Observable<MiniCard[]> {
     // Filter the cardData based on the searchTerm
     const filteredData = this.cardData.filter((card) =>
       card.employeeModel.firstName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -48,8 +48,8 @@ export class SideNavComponent {
       observer.next(filteredData);
       observer.complete();
     });
-  } */
-  
+  }
+   */
   onSearchTermChange(term: string) {
     this.searchTerm$.next(term);
   }

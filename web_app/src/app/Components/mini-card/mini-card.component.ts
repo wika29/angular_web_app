@@ -44,11 +44,11 @@ export class MiniCardComponent implements OnInit, OnDestroy  {
   }
 
   cardClicked(card: any): void {
-      if(this.showOverlay = true){
-      const miniCard = card as MiniCard;
-      this.dataService.updateData(miniCard.employeeModel)
-      console.log('Clicked Card Data:', miniCard.employeeModel.firstName);
-      this.dataService.setBigCardVisibility(!this.showOverlay)   
+      if(this.showOverlay == true){
+        const miniCard = card as MiniCard;
+        this.dataService.updateData(miniCard.employeeModel)
+        console.log('Clicked Card Data:', miniCard.employeeModel.firstName);
+        this.dataService.setBigCardVisibility(!this.showOverlay)   
      }
   }
 
