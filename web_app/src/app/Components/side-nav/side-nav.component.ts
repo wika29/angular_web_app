@@ -1,9 +1,8 @@
-import { Component, ViewChild, Renderer2, Input, ElementRef, AfterViewInit } from '@angular/core';
-import { SteckbriefComponent } from '../Steckbrief/steckbrief.component';
-import { MiniCardComponent } from '../mini-card/mini-card.component';
-import { MiniCard } from '../mini-card/mini-card.component';
-import { DataService } from 'src/app/Service/data-sharing/data-service.service';
-import { debounceTime, distinctUntilChanged, switchMap , Subject, Observable, BehaviorSubject } from 'rxjs';
+import {Component, ViewChild} from '@angular/core';
+import {SteckbriefComponent} from '../Steckbrief/steckbrief.component';
+import {MiniCard, MiniCardComponent} from '../mini-card/mini-card.component';
+import {DataService} from 'src/app/Service/data-sharing/data-service.service';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-side-nav',
@@ -29,6 +28,7 @@ export class SideNavComponent {
   }
 
   onClick(){
+    this.steckbriefComponent.resetFields()
     this.steckbriefComponent.toggleOverlay()
   }
 

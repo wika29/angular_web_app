@@ -1,14 +1,15 @@
-export class EmployeeModel {   
-    public id: number;
+export class EmployeeModel {
+    public id?: number;
     public firstName: string;
     public lastName: string;
     public street: string;
-    public postcode: number;
+    public postcode: string;
     public city: string;
-    public phone: number;
-    public skillSet?: any[];
+    public phone: string;
+    public skillSet?: string;
 
-    constructor(id: number, firstName: string, lastName: string, street: string, postcode: number, city: string, phone: number, skillSet?: any[]) {
+
+    constructor(firstName: string, lastName: string, street: string, postcode: string, city: string, phone: string, skillSet?: string, id?: number,) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -17,9 +18,40 @@ export class EmployeeModel {
         this.city = city;
         this.phone = phone;
         this.skillSet = skillSet;
-    }   
+    }
 
     public toString(): string {
         return `User Details:\nID: ${this.id}\nFirst Name: ${this.firstName}\nLast Name: ${this.lastName}\nStreet: ${this.street}\nPostcode: ${this.postcode}\nCity: ${this.city}\nPhone: ${this.phone}\nSkill Set: ${this.skillSet}`;
     }
+
+
+    /*  public static fromJson(json: Record<string, any>): EmployeeModel {
+          return new EmployeeModel(
+              json['firstName'],
+              json['lastName'],
+              json['street'],
+              json['postcode'],
+              json['city'],
+              json['phone'],
+              json['skillSet'],
+              json['id'],
+          );
+      }
+  */
+
+
+    /*    public toJson(): Record<string, any> {
+            return {
+                id: this.id,
+                firstName: this.firstName,
+                lastName: this.lastName,
+                street: this.street,
+                postcode: this.postcode,
+                city: this.city,
+                phone: this.phone,
+                skillSet: this.skillSet,
+            };
+        }*/
 }
+
+

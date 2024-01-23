@@ -1,5 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-import { Injectable } from '@angular/core';
+import axios from 'axios';
+import {Injectable} from '@angular/core';
 
 export enum RequestMethod {
   GET,
@@ -15,7 +15,7 @@ export class ApiService {
   private data: string = "";
   public readonly baseUrl: string = 'http://localhost:8089' //Docker local build
   public readonly baseUrlKC: string = 'https://employee.szut.dev'  //Online mit KeyCloak
- 
+
   private async getAccessToken(): Promise<string> {
     let url = "https://keycloak.szut.dev/auth/realms/szut/protocol/openid-connect/token";
     let headers: Record<string,string> = {
@@ -30,7 +30,7 @@ export class ApiService {
     try{
         let access_token: string = "";
         let response = await axios.post(url, data, {headers})
-        access_token = response.data['access_token']  
+        access_token = response.data['access_token']
         return access_token
     }catch(error: any){
         console.error('Error loading access Token: ', error.message)
@@ -38,13 +38,13 @@ export class ApiService {
     }
   }
 
-  private async requestData(method: RequestMethod, useKeyCloak : boolean = false, substring :string = "", bodyData: string = "") {    
+    private async requestData(method: RequestMethod, useKeyCloak: boolean = false, substring: string = "", bodyData = {}) {
       let url: string;
       let response;
       if(useKeyCloak){
         url = this.baseUrlKC + "/employees" + substring;
         let access_token = await this.getAccessToken();
-        
+
         let headers = {
           "Authorization" : `Bearer ${access_token}`
         }
@@ -62,10 +62,10 @@ export class ApiService {
           case RequestMethod.POST: response = await axios.post(url, bodyData).catch((error) => console.error("Error during POST request: "+ error.message)); break;
           case RequestMethod.PUT: response = await axios.put(url, bodyData).catch((error) => console.error("Error during UPDATE request: "+ error.message)); break;
           case RequestMethod.DELETE: response = await axios.delete(url).catch((error) => console.error("Error during DELETE request: "+ error.message)); break;
-        } 
-      }  
-      if(response != undefined && response.status == 200){ 
-        return Promise.resolve(response.data);      
+        }
+      }
+        if (response != undefined && response.status == 200) {
+            return Promise.resolve(response.data);
       }
       else if (response != undefined){
         return "Status Code: " + response.status;
@@ -73,24 +73,24 @@ export class ApiService {
       return "Unable to find data";
   }
 
-  public newEmployee(useKeyCloak = false, body: string): Promise<any[]> { 
-    return Promise.resolve(this.requestData(RequestMethod.POST, useKeyCloak, "", body));
-  } 
-  
-  public getEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> { 
+    public newEmployee(useKeyCloak = false, body = {}): Promise<any[]> {
+        return Promise.resolve(this.requestData(RequestMethod.POST, useKeyCloak, "/", body));
+    }
+
+    public getEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> {
     return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak, "/" + id.toString()));
-  } 
+    }
 
-  public getAllEmployees(useKeyCloak = false): Promise<any[]> { 
-    return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak)); 
-  } 
+    public getAllEmployees(useKeyCloak = false): Promise<any[]> {
+        return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak));
+    }
 
-  public updateEmployee(useKeyCloak = false, id: number, body: string): Promise<any[]> { 
+    public updateEmployee(useKeyCloak = false, id: number, body = {}): Promise<any[]> {
     return Promise.resolve(this.requestData(RequestMethod.PUT, useKeyCloak, "/" + id.toString(), body));
-  } 
+    }
 
-  public deleteEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> { 
+    public deleteEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> {
     return Promise.resolve(this.requestData(RequestMethod.DELETE, useKeyCloak, "/" + id.toString()));
-  } 
+    }
 
-}    
+}

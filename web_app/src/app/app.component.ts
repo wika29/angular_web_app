@@ -1,11 +1,10 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild , Renderer2 } from '@angular/core';
-import { SteckbriefComponent } from "./Components/Steckbrief/steckbrief.component";
-import { EmployeeModel } from './Model/PersonModel'
-import { ApiService } from './Service/API/swaggerConnection';
-import { DataService } from './Service/data-sharing/data-service.service';
-import { ImageCaptureService } from './Service/html2Image/image-capture.service';
-import { SideNavComponent } from './Components/side-nav/side-nav.component';
-import { MiniCard, MiniCardComponent } from './Components/mini-card/mini-card.component';
+import {Component, ViewChild} from '@angular/core';
+import {EmployeeModel} from './Model/PersonModel'
+import {ApiService} from './Service/API/swaggerConnection';
+import {DataService} from './Service/data-sharing/data-service.service';
+import {ImageCaptureService} from './Service/html2Image/image-capture.service';
+import {SideNavComponent} from './Components/side-nav/side-nav.component';
+import {MiniCard} from './Components/mini-card/mini-card.component';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +21,8 @@ export class AppComponent {
 
   cardData: MiniCard[] = [];
 
-  ngAfterViewInit(){ 
-    this.apiService.getAllEmployees().then((data) => {  
+  ngAfterViewInit() {
+    this.apiService.getAllEmployees().then((data) => {
       const updatePromises: Promise<void>[] = [];
       data.forEach(element => {
           const employee = new EmployeeModel(element.id,
@@ -34,20 +33,19 @@ export class AppComponent {
           element.city,
           element.phone)
           const updatePromise = Promise.resolve(this.dataService.updateSteckbrief(employee))
-          updatePromises.push(updatePromise);   
+        updatePromises.push(updatePromise);
 
           Promise.all(updatePromises).then(() => {
             const card = this.sideNavComponent.steckbriefComponent.card
-            const updatePromise = this.imageCaptureService.capture(card).then((data)=>{            
-              this.dataService.addCard(this.cardData, '', data, employee);  
-            });   
-            updatePromises.push(updatePromise);   
-          });     
+            const updatePromise = this.imageCaptureService.capture(card).then((data) => {
+              this.dataService.addCard(this.cardData, '', data, employee);
+            });
+            updatePromises.push(updatePromise);
+          });
         });
-
-        // console.log(this.sideNavComponent.appSteckbriefRef.nativeElement)        
-        // 
-      }); 
+      // console.log(this.sideNavComponent.appSteckbriefRef.nativeElement)
+      //
+    });
       // this.sideNavComponent.removeClass()
     }
 }
