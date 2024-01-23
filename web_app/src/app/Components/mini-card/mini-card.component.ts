@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ImageCaptureService } from 'src/app/Service/html2Image/image-capture.service';
+import { EmployeeModel } from 'src/app/Model/PersonModel';
 
 export interface MiniCard {
   title: string;
   backgroundImage: string;
+  employeeModel: EmployeeModel
 }
 
 @Component({

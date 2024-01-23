@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SteckbriefComponent implements OnInit {
   @Input() showOverlay: boolean = true;
   @ViewChild('steckbrief', {static:false}) card!: ElementRef ;  
+  @Input() zLevel: number = -2; // Default value can be adjusted
  
   closeOverlay() {
     this.showOverlay = false;

@@ -15,13 +15,11 @@
     <mat-sidenav-content>                              
         
         <app-mini-card  [cardData]="cardData"></app-mini-card>
-        
-        <div #overlay>
-            <app-steckbrief></app-steckbrief>                
+        <div #steckbrief class="hiddenContainer">
+            <app-steckbrief ></app-steckbrief>       
         </div>
-        
-        <div class="hiddenContainer" #hidden>
-        </div>
+
+ 
           
     </mat-sidenav-content>
 </mat-sidenav-container> 
