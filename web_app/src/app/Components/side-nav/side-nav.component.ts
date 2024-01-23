@@ -50,16 +50,16 @@ export class SideNavComponent {
     
         let filteredData = searchTerm 
         if (searchTerm) {
-          filteredData = this.originalCardData.filter((card) =>
+          filteredData = this.cardData$.value.filter((card) =>
             card.employeeModel.firstName.toLowerCase().includes(searchTerm)
           );
-        } else {
-          filteredData = this.originalCardData;
+          this.dataService.updateCards(filteredData);
+        } else {        
+          this.dataService.resetMiniCards();
         }
     
-        console.log('Filtered data:', filteredData);
+        // console.log('Filtered data:', filteredData);
     
-        this.dataService.updateCards(filteredData);
     
         return of(filteredData);
       })

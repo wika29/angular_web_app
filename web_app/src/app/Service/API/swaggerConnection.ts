@@ -38,7 +38,7 @@ export class ApiService {
     }
   }
 
-  private async requestData(method: RequestMethod, useKeyCloak : boolean = false, substring :string = "", bodyData: string = "") {    
+  private async requestData(method: RequestMethod, useKeyCloak : boolean = false, substring :string = "", bodyData = {}) {    
       let url: string;
       let response;
       if(useKeyCloak){
@@ -73,7 +73,7 @@ export class ApiService {
       return "Unable to find data";
   }
 
-  public newEmployee(useKeyCloak = false, body: string): Promise<any[]> { 
+  public newEmployee(useKeyCloak = false, body = {}): Promise<any[]> { 
     return Promise.resolve(this.requestData(RequestMethod.POST, useKeyCloak, "", body));
   } 
   
@@ -85,7 +85,7 @@ export class ApiService {
     return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak)); 
   } 
 
-  public updateEmployee(useKeyCloak = false, id: number, body: string): Promise<any[]> { 
+  public updateEmployee(useKeyCloak = false, id: number, body = {}): Promise<any[]> { 
     return Promise.resolve(this.requestData(RequestMethod.PUT, useKeyCloak, "/" + id.toString(), body));
   } 
 

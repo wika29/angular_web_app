@@ -25,6 +25,10 @@ export class DataService {
   phoneNumber$ = this.phoneNumberSubject.asObservable();
   skills$ = this.skillsSubject.asObservable();
 
+  constructor() {
+    this.originalMiniCards = this.miniCardSubject.value.slice();    
+  }
+
   updateData(data: any): void {
     this.firstNameSubject.next(data.firstName);
     this.lastNameSubject.next(data.lastName);
@@ -59,10 +63,12 @@ export class DataService {
     this.cardVisibility.next(value);
   }
 
+  private originalMiniCards: MiniCard[] = [];
   private miniCardSubject = new BehaviorSubject<MiniCard[]>([]);
   miniCardData$ = this.miniCardSubject.asObservable();
   updateCards(newCardData: MiniCard[]) {
     this.miniCardSubject.next(newCardData);
+    
   }
 
   public addCard(title: string, backgroundImage: string, employee: EmployeeModel): void {
@@ -72,6 +78,13 @@ export class DataService {
     cardData.push(newCard);
     this.updateCards(cardData)
   }
+
+  public resetMiniCards(): void {
+    this.originalMiniCards.forEach(element => {
+      console.log('originalMiniCards:', element);
+    });
+    this.updateCards(this.originalMiniCards);
+  }  
 
   public removeCard(employeeModel: EmployeeModel): void {
     let cardData = this.miniCardSubject.value
