@@ -16,24 +16,11 @@ export class AppComponent {
   title = 'web_app';
   modelEmployees: EmployeeModel[] = [];
   smallHtmlImages: HTMLDivElement[] = [];
-  overlay: boolean = true; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
   @ViewChild( SideNavComponent) sideNavComponent!: SideNavComponent;
 
   constructor(private apiService: ApiService, private dataService: DataService, private imageCaptureService: ImageCaptureService){}
 
-  updateSteckbrief(employee : EmployeeModel): Promise<void> {
-    return Promise.resolve(this.dataService.updateData({
-      firstName: employee.firstName,
-      lastName: employee.lastName,
-      id: employee.id,
-      street: employee.street,
-      postalCode: employee.postcode,
-      city: employee.city,
-      phoneNumber: employee.phone,
-      // skills: employee.skillSet,
-    }));
-  
-  }
+
 
   cardData: MiniCard[] = [];
 
@@ -47,8 +34,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit(){ 
-
-    this.apiService.getAllEmployees().then((data) => {  
+    this.apiService.getAllEmployees(true).then((data) => {  
       const updatePromises: Promise<void>[] = [];
       data.forEach(element => {
           const employee = new EmployeeModel(element.id,
@@ -58,7 +44,7 @@ export class AppComponent {
           element.postcode,
           element.city,
           element.phone)
-          const updatePromise = this.updateSteckbrief(employee)
+          const updatePromise = Promise.resolve(this.dataService.updateSteckbrief(employee))
           updatePromises.push(updatePromise);   
 
           Promise.all(updatePromises).then(() => {

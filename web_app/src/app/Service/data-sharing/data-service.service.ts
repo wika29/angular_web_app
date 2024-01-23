@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { EmployeeModel } from 'src/app/Model/PersonModel';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,19 @@ export class DataService {
     this.citySubject.next(data.city);
     this.phoneNumberSubject.next(data.phoneNumber);
     this.skillsSubject.next(data.skills);
+  }
+
+  updateSteckbrief(employee : EmployeeModel): void {
+    return this.updateData({
+      firstName: employee.firstName,
+      lastName: employee.lastName,
+      id: employee.id,
+      street: employee.street,
+      postalCode: employee.postcode,
+      city: employee.city,
+      phoneNumber: employee.phone,
+      // skills: employee.skillSet,
+    });  
   }
 
   private cardVisibility = new BehaviorSubject<boolean>(true);

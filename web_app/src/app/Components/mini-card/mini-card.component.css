@@ -9,3 +9,7 @@
   margin: 5px; 
   box-sizing: border-box; 
 }
+
+.no-scroll {
+  overflow: hidden;
+}

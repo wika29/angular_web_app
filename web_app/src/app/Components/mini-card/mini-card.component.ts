@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { Data } from '@angular/router';
 import { EmployeeModel } from 'src/app/Model/PersonModel';
 import { DataService } from 'src/app/Service/data-sharing/data-service.service';
@@ -21,16 +21,42 @@ export class MiniCardComponent implements OnInit {
   showOverlay: boolean = true;
   
 
-  constructor(private sharedService: DataService, private dataService: DataService) {}
+  constructor(private sharedService: DataService, private dataService: DataService, private renderer: Renderer2) {}
   
   ngOnInit(): void {
-    this.dataService.getBigCardVisibility().subscribe((value) => (
-      this.showOverlay = value
-    ));
+    this.dataService.getBigCardVisibility().subscribe((value) => (this.showOverlay = value));
   }  
 
+  private scrollTop: number = 0;
+  private scrollLeft: number = 0;
+
+  disableScroll(): void {
+    // Get the current page scroll position
+    this.scrollTop = document.documentElement.scrollTop;
+    this.scrollLeft = document.documentElement.scrollLeft;
+
+    // if any scroll is attempted, set this to the previous value
+    window.onscroll = () => {
+      window.scrollTo(this.scrollLeft, this.scrollTop);
+    };
+  }
+
+  enableScroll(): void {
+    window.onscroll = () => {};
+  }
+
   cardClicked(card: any): void {
-      console.log(typeof card)
-      this.sharedService.setBigCardVisibility(!this.showOverlay)    
+    if(this.showOverlay){
+      this.disableScroll();
+    }
+    else{
+      this.enableScroll();
+    }
+    // if(this.showOverlay = true){
+      const miniCard = card as MiniCard;
+      this.sharedService.updateData(miniCard.employeeModel)
+      console.log('Clicked Card Data:', miniCard.employeeModel.firstName);
+      this.sharedService.setBigCardVisibility(!this.showOverlay)   
+    //  }
   }
 }
