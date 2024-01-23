@@ -1,8 +1,13 @@
 .overlay {
-  left: 40%; /* Set the left edge at half the width of the browser window */
-  padding: 20px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: flex;
+  position: relative;
+  top: 100%; 
+  left: 50%; 
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  width: 600px; /* Set the width of the component */
+  height: 650px; 
+  width: 520px; 
   border-radius: 5px;
 }
 
@@ -53,5 +58,6 @@ button {
 /* Efekt przy najechaniu na przyciski */
 button:hover {
   background-color: #d9d9d9;
+
 }
 

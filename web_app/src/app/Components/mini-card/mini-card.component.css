@@ -1,0 +1,11 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom-card {
+  height: 325px;
+  width: 260px;
+  margin: 5px; 
+  box-sizing: border-box; 
+}
