@@ -10,7 +10,7 @@ export class ImageCaptureService {
   public capture(elementRef: ElementRef): Promise<string> {
     const element = elementRef.nativeElement;
     return html2canvas(element, {
-      scale: 0.51, 
+      scale: 0.52, 
     }).then(canvas => {
       const dataURL = canvas.toDataURL('image/png');
       return dataURL;

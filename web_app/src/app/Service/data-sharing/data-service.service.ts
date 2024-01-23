@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { EmployeeModel } from 'src/app/Model/PersonModel';
 
 @Injectable({
@@ -50,11 +50,14 @@ export class DataService {
   }
 
   private cardVisibility = new BehaviorSubject<boolean>(true);
+  getBigCardVisibility(): Observable<boolean> {
+    return this.cardVisibility.asObservable();
+  }
   setBigCardVisibility(value: boolean): void {
     this.cardVisibility.next(value);
   }
 
-  getBigCardVisibility(): Observable<boolean> {
-    return this.cardVisibility.asObservable();
-  }
+  
+
+
 }

@@ -1,5 +1,8 @@
   <mat-card [ngClass]="{'overlayHidden': showOverlay}"  class="overlay">
     <mat-card-content #steckbrief>
+      <button mat-icon-button class="close-button" (click)="closeOverlay()">
+        <mat-icon>close</mat-icon>
+      </button>
       <div class="container">
         <div class="row">
           <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
