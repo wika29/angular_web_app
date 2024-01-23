@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild , Renderer2 } fr
 import { SteckbriefComponent } from "./Components/Steckbrief/steckbrief.component";
 import { EmployeeModel } from './Model/PersonModel'
 import { ApiService } from './Service/API/swaggerConnection';
-import { DataService } from './Service/API/data-service.service';
+import { DataService } from './Service/data-sharing/data-service.service';
 import { ImageCaptureService } from './Service/html2Image/image-capture.service';
 import { SideNavComponent } from './Components/side-nav/side-nav.component';
 import { MiniCard, MiniCardComponent } from './Components/mini-card/mini-card.component';
@@ -47,6 +47,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit(){ 
+
     this.apiService.getAllEmployees().then((data) => {  
       const updatePromises: Promise<void>[] = [];
       data.forEach(element => {

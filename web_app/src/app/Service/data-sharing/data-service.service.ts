@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +32,14 @@ export class DataService {
     this.citySubject.next(data.city);
     this.phoneNumberSubject.next(data.phoneNumber);
     this.skillsSubject.next(data.skills);
+  }
+
+  private cardVisibility = new BehaviorSubject<boolean>(true);
+  setBigCardVisibility(value: boolean): void {
+    this.cardVisibility.next(value);
+  }
+
+  getBigCardVisibility(): Observable<boolean> {
+    return this.cardVisibility.asObservable();
   }
 }

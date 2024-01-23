@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Data } from '@angular/router';
 import { EmployeeModel } from 'src/app/Model/PersonModel';
-import { DataSharingService } from 'src/app/Service/data-sharing/data-sharing.service';
+import { DataService } from 'src/app/Service/data-sharing/data-service.service';
 
 export interface MiniCard {
   title: string;
@@ -18,18 +18,19 @@ export interface MiniCard {
 export class MiniCardComponent implements OnInit {
   @Input() cardData!: MiniCard[];
   sharedData: any;
-  showOverlay: boolean = false;
+  showOverlay: boolean = true;
   
 
-  constructor(private sharedService: DataSharingService, private dataSharingService: DataSharingService) {}
+  constructor(private sharedService: DataService, private dataService: DataService) {}
   
   ngOnInit(): void {
-    this.dataSharingService.getBigCardVisibility().subscribe((value) => (this.showOverlay = value));
+    this.dataService.getBigCardVisibility().subscribe((value) => (
+      this.showOverlay = value
+    ));
   }  
 
   cardClicked(card: any): void {
-      let bool = !this.showOverlay;
-      console.log("Card was clicked! bool is: ", bool)
-      this.sharedService.setBigCardVisibility(bool)    
+      console.log(typeof card)
+      this.sharedService.setBigCardVisibility(!this.showOverlay)    
   }
 }
