@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { EmployeeModel } from 'src/app/Model/PersonModel';
+import { MiniCard } from 'src/app/Components/mini-card/mini-card.component';
 
 @Injectable({
   providedIn: 'root'
@@ -53,8 +54,15 @@ export class DataService {
   getBigCardVisibility(): Observable<boolean> {
     return this.cardVisibility.asObservable();
   }
+
   setBigCardVisibility(value: boolean): void {
     this.cardVisibility.next(value);
+  }
+
+  private miniCardSubject = new BehaviorSubject<MiniCard[]>([]);
+  miniCardData$ = this.miniCardSubject.asObservable();
+  updateCards(newCardData: MiniCard[]) {
+    this.miniCardSubject.next(newCardData);
   }
 
   

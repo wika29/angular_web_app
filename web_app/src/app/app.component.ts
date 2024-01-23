@@ -20,17 +20,22 @@ export class AppComponent {
 
   constructor(private apiService: ApiService, private dataService: DataService, private imageCaptureService: ImageCaptureService){}
 
-
-
   cardData: MiniCard[] = [];
+
+  updateCards(newCardData: MiniCard[]) {
+    this.dataService.updateCards(newCardData);
+    console.log("updating cards")
+  }
 
   addCard(title: string, backgroundImage: string, employeeModel: EmployeeModel): void {
     const newCard: MiniCard = { title, backgroundImage, employeeModel};
     this.cardData.push(newCard);
+    this.updateCards(this.cardData)
   }
 
   removeCard(employeeModel: EmployeeModel): void {
-    this.cardData = this.cardData.filter(card => card.employeeModel !== employeeModel);   
+    this.cardData = this.cardData.filter(card => card.employeeModel !== employeeModel); 
+    this.updateCards(this.cardData)  
   }
 
   ngAfterViewInit(){ 

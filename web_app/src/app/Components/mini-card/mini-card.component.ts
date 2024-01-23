@@ -1,7 +1,7 @@
 import { Component, Input, OnInit,OnDestroy  } from '@angular/core';
 import { EmployeeModel } from 'src/app/Model/PersonModel';
 import { DataService } from 'src/app/Service/data-sharing/data-service.service';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 export interface MiniCard {
   title: string;
@@ -16,32 +16,19 @@ export interface MiniCard {
   // template: `<mat-card class="custom-card"></mat-card>`,
 })
 export class MiniCardComponent implements OnInit, OnDestroy  {
-  @Input() cardData!: MiniCard[];
+  cardData$ = new BehaviorSubject<any[]>([]);
+  miniCardData$ = this.dataService.miniCardData$;
   sharedData: any;
-  showOverlay: boolean = true;
-  
-  numberOfCardsToShow = 5;
-  // private numberOfCardsSubscription: Subscription;
-  
+  showOverlay: boolean = true;  
 
-  constructor(private dataService: DataService) {
-    /* this.numberOfCardsSubscription = this.dataService.numberOfCards$.subscribe(
-      (newNumber: number) => {
-        this.numberOfCardsToShow = newNumber;
-      }
-    ); */
-  }  
-  
-  updateNumberOfCardsToShow(newNumber: number) {
-    this.numberOfCardsToShow = newNumber;
-  }
+  constructor(private dataService: DataService) {}  
   
   ngOnInit(): void {
     this.dataService.getBigCardVisibility().subscribe((value) => (this.showOverlay = value));
+    this.miniCardData$.subscribe((cards: MiniCard[]) => {
+      this.cardData$.next(cards);
+    });
   }  
-  enableScroll(): void {
-    window.onscroll = () => {};
-  }
 
   cardClicked(card: any): void {
       if(this.showOverlay == true){
