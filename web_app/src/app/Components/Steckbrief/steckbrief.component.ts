@@ -1,6 +1,6 @@
 import { Component, Input, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { DataService } from 'src/app/Service/API/data-service.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-steckbrief',
@@ -11,6 +11,10 @@ import { DataService } from 'src/app/Service/API/data-service.service';
 export class SteckbriefComponent implements OnInit {
   @Input() showOverlay: boolean = true;
   @ViewChild('steckbrief', {static:false}) card!: ElementRef ;  
+ 
+  closeOverlay() {
+    this.showOverlay = false;
+  }
 
   firstName!: string;
   lastName!: string;

@@ -1,5 +1,4 @@
 import { ElementRef, Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
 import html2canvas from 'html2canvas';
 
 
