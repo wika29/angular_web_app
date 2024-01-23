@@ -10,8 +10,7 @@ import { MiniCardComponent } from './Components/mini-card/mini-card.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  template:`<app-side-nav></app-side-nav>`
+  styleUrls: ['./app.component.css'],  
 })
 export class AppComponent {
   title = 'web_app';
@@ -46,6 +45,12 @@ export class AppComponent {
     //         // Do something with the captured images
     // });
   }
+
+  cardData = [
+    { title: 'Card 1', content: 'Content 1', imageUrl: 'path/to/image1.jpg' },
+    { title: 'Card 2', content: 'Content 2', imageUrl: 'path/to/image2.jpg' },
+    // Add more cards as needed
+  ];
   
   ngAfterViewInit(){ 
     this.apiService.getAllEmployees().then((data) => {  

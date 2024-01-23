@@ -5,7 +5,7 @@ import { ImageCaptureService } from 'src/app/Service/html2Image/image-capture.se
   selector: 'app-mini-card',
   templateUrl: './mini-card.component.html',
   styleUrls: ['./mini-card.component.css'],
-  template: `<mat-card class="custom-card" *ngFor="let card of cardData"></mat-card>`,
+  template: `<mat-card class="custom-card" *ngFor="let card of cardData">{{ card.title }} - {{ card.content }}</mat-card>`,
 })
 export class MiniCardComponent {
   @Input() cardData: any;

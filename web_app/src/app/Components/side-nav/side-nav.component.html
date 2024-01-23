@@ -13,7 +13,9 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>                              
-        <app-mini-card *ngFor="let card of cardData" [cardData]="card"></app-mini-card>
+        
+        <app-mini-card  [cardData]="cardData"></app-mini-card>
+        
         <div #overlay>
             <app-steckbrief></app-steckbrief>                
         </div>
