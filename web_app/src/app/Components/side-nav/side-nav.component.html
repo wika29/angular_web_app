@@ -4,25 +4,29 @@
             <mat-list-item routerLink="#">
                 <mat-icon>dashboard</mat-icon><span>Dashboard</span>
             </mat-list-item>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="search-field">
                 <mat-label>Search</mat-label>
                 <input matInput >
             </mat-form-field>
-            <button mat-stroked-button>New Employee</button>          
-        
+
+          <button class="employee-button">
+            <mat-icon class="add-icon">add</mat-icon>
+            New Employee
+          </button>
+
         </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>                              
-        
+    <mat-sidenav-content>
+
         <app-mini-card  [cardData]="cardData"></app-mini-card>
-        
+
         <div #overlay>
-            <app-steckbrief></app-steckbrief>                
+            <app-steckbrief></app-steckbrief>
         </div>
-        
+
         <div class="hiddenContainer" #hidden>
         </div>
-          
+
     </mat-sidenav-content>
-</mat-sidenav-container> 
+</mat-sidenav-container>
 

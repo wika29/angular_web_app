@@ -2,13 +2,15 @@
   transform: translate(-50%, -50%);
   z-index: 2;
   display: flex;
-  position: relative;
-  top: 100%; 
-  left: 50%; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  height: 650px; 
-  width: 520px; 
+  height: 650px;
+  width: 520px;
   border-radius: 5px;
+  margin-top: 0px;
+  margin-left: -60px;
 }
 
 .rounded-image {
@@ -27,10 +29,6 @@
   flex-direction: column;
 }
 
-.small-field {
-  width: 50px;
-}
-
 .close-button {
   position: absolute;
   top: 10px;
@@ -39,7 +37,7 @@
 
 
 
-/* Zaokrąglone rogi i zmniejszona szerokość pól formularza */
+
 mat-form-field {
   border-radius: 40px;
   width: 200px;
@@ -47,7 +45,7 @@ mat-form-field {
 }
 
 
-/* Lekkie szare tło pod przyciskami */
+/* button background */
 button {
   background-color: #f2f2f2;
   transition: background-color 0.3s ease;
@@ -55,9 +53,45 @@ button {
   border-radius: 15px;
 }
 
-/* Efekt przy najechaniu na przyciski */
+
 button:hover {
   background-color: #d9d9d9;
 
 }
+
+button#save-button {
+  margin-left: 230px;
+}
+
+.delete-button {
+  display: flex;
+  align-items: center;
+  color: red;
+}
+
+.delete-icon {
+  color: red;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+#save-button {
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+
+.small-field {
+  width: 50px;
+
+}
+
+.input-field input[readonly] {
+  color: #777; /* Ändern der Textfarbe für schreibgeschützte Eingabefelder */
+  cursor: not-allowed; /* Ändern des Cursors für schreibgeschützte Eingabefelder */
+}
+
 

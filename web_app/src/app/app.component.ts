@@ -10,7 +10,7 @@ import { MiniCard, MiniCardComponent } from './Components/mini-card/mini-card.co
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],  
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'web_app';
@@ -32,7 +32,7 @@ export class AppComponent {
       phoneNumber: employee.phone,
       // skills: employee.skillSet,
     }));
-  
+
   }
 
   cardData: MiniCard[] = [];
@@ -41,9 +41,9 @@ export class AppComponent {
     const newCard: MiniCard = { title, backgroundImage };
     this.cardData.push(newCard);
   }
-  
-  ngAfterViewInit(){ 
-    this.apiService.getAllEmployees().then((data) => {  
+
+  ngAfterViewInit(){
+    this.apiService.getAllEmployees().then((data) => {
       const updatePromises: Promise<void>[] = [];
       data.forEach(element => {
           const employee = new EmployeeModel(element.id,
@@ -54,18 +54,18 @@ export class AppComponent {
           element.city,
           element.phone)
           const updatePromise = this.updateSteckbrief(employee)
-          updatePromises.push(updatePromise);   
+          updatePromises.push(updatePromise);
         });
-        
+
         Promise.all(updatePromises).then(() => {
           const card = this.sideNavComponent.steckbriefComponent.card
           this.imageCaptureService.capture(card).then((data)=>{
             this.addCard('', data);
-          });   
-        });    
-      
-      
-      }); 
+          });
+        });
+
+
+      });
     }
 }
 

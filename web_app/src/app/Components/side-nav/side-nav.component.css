@@ -4,7 +4,7 @@
 .app-container {
     height: 100%;
     margin: 0;
-}  
+}
 .app-sidenav {
     width: 230px;
 }
@@ -13,7 +13,7 @@
     height: 100%;
     align-items: center;
     justify-content: center;
-} 
+}
 
 .hiddenContainer {
     position: absolute;
@@ -21,3 +21,34 @@
     left: -9999px;
     z-index: -1;
   }
+
+
+
+.employee-button {
+  background-color: #f2f2f2;
+  transition: background-color 0.3s ease;
+  border-radius: 15px;
+  padding: 10px 20px;
+  border: none;
+  margin: 5px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+}
+
+.employee-button:hover {
+  background-color: #d9d9d9;
+}
+
+.add-icon {
+  color: green;
+  margin-right: 5px;
+}
+
+.search-field {
+  margin: 5px;
+  margin: 0 auto;
+  display: flex;
+}
