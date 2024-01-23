@@ -19,7 +19,7 @@ export class AppComponent {
   overlay: boolean = true; //boolean um den Steckbrief anzuzeigen (true für Anzeige)
   @ViewChild( SideNavComponent) sideNavComponent!: SideNavComponent;
 
-  constructor(private apiService: ApiService, private dataService: DataService, private imageCaptureService: ImageCaptureService, private renderer: Renderer2){}
+  constructor(private apiService: ApiService, private dataService: DataService, private imageCaptureService: ImageCaptureService){}
 
   updateSteckbrief(employee : EmployeeModel): Promise<void> {
     return Promise.resolve(this.dataService.updateData({
@@ -68,7 +68,7 @@ export class AppComponent {
             updatePromises.push(updatePromise);   
           });     
         });
-        
+        this.sideNavComponent.steckbriefComponent.showOverlay = true; // anzeigen
         // console.log(this.sideNavComponent.appSteckbriefRef.nativeElement)        
         // 
       }); 

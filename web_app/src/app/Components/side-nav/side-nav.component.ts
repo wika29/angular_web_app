@@ -6,21 +6,9 @@ import { SteckbriefComponent } from '../Steckbrief/steckbrief.component';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css'],
 })
-export class SideNavComponent implements AfterViewInit {
+export class SideNavComponent {
   @Input() cardData: any;
   @ViewChild(SteckbriefComponent) steckbriefComponent!: SteckbriefComponent;
 
   constructor(private renderer: Renderer2, private el: ElementRef) {}
-
-  ngAfterViewInit() {
-    console.log('ElementRef:', this.el);
-    const divElement = this.el.nativeElement.querySelector('#steckbrief');
-    console.log('DivElement:', divElement);
-    this.removeClass();
-  }
-
-  removeClass() {
-    const divElement = this.el.nativeElement.querySelector('#steckbrief');
-    this.renderer.removeClass(divElement, 'hiddenContainer');
-  }
 }

@@ -1,4 +1,4 @@
-  <mat-card *ngIf="showOverlay"  class="overlay" >
+  <mat-card [ngClass]="{'overlayHidden': showOverlay}"  class="overlay">
     <mat-card-content #steckbrief>
       <div class="container">
         <div class="row">

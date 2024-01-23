@@ -11,6 +11,13 @@
   border-radius: 5px;
 }
 
+.overlayHidden {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  z-index: -1;
+}
+
 .rounded-image {
   border-radius: 50%;
   width: 100px;
