@@ -34,7 +34,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit(){ 
-    this.apiService.getAllEmployees(true).then((data) => {  
+    this.apiService.getAllEmployees().then((data) => {  
       const updatePromises: Promise<void>[] = [];
       data.forEach(element => {
           const employee = new EmployeeModel(element.id,

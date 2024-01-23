@@ -36,6 +36,7 @@ export class DataService {
   }
 
   updateSteckbrief(employee : EmployeeModel): void {
+    console.log("update employee: ", employee.toString())
     return this.updateData({
       firstName: employee.firstName,
       lastName: employee.lastName,
