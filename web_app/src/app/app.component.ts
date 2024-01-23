@@ -10,7 +10,7 @@ import { MiniCard, MiniCardComponent } from './Components/mini-card/mini-card.co
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],  
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'web_app';
