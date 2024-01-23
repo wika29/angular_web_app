@@ -65,8 +65,7 @@ export class ApiService {
         } 
       }  
       if(response != undefined && response.status == 200){ 
-           
-        return response.data;      
+        return Promise.resolve(response.data);      
       }
       else if (response != undefined){
         return "Status Code: " + response.status;
@@ -75,23 +74,23 @@ export class ApiService {
   }
 
   public newEmployee(useKeyCloak = false, body: string): Promise<any[]> { 
-    return this.requestData(RequestMethod.POST, useKeyCloak, "", body)
+    return Promise.resolve(this.requestData(RequestMethod.POST, useKeyCloak, "", body));
   } 
   
   public getEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> { 
-    return this.requestData(RequestMethod.GET, useKeyCloak, "/" + id.toString())
+    return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak, "/" + id.toString()));
   } 
 
   public getAllEmployees(useKeyCloak = false): Promise<any[]> { 
-    return this.requestData(RequestMethod.GET, useKeyCloak)         
+    return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak)); 
   } 
 
   public updateEmployee(useKeyCloak = false, id: number, body: string): Promise<any[]> { 
-    return this.requestData(RequestMethod.PUT, useKeyCloak, "/" + id.toString(), body)
+    return Promise.resolve(this.requestData(RequestMethod.PUT, useKeyCloak, "/" + id.toString(), body));
   } 
 
   public deleteEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> { 
-    return this.requestData(RequestMethod.DELETE, useKeyCloak, "/" + id.toString())
+    return Promise.resolve(this.requestData(RequestMethod.DELETE, useKeyCloak, "/" + id.toString()));
   } 
 
 }    

@@ -6,38 +6,38 @@
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Vorname">
+            <input matInput placeholder="Vorname" [(ngModel)]="firstName">
           </mat-form-field>
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Nachname">
+            <input matInput placeholder="Nachname" [(ngModel)]="lastName">
           </mat-form-field>
           <mat-form-field appearance="fill" class="small-field">
-            <input matInput placeholder="ID" readonly>
+            <input matInput placeholder="ID" readonly [(ngModel)]="id">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Straße">
+            <input matInput placeholder="Straße" [(ngModel)]="street">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="PLZ">
+            <input matInput placeholder="PLZ"  [(ngModel)]="postalCode">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Ort">
+            <input matInput placeholder="Ort" [(ngModel)]="city">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Telefonnummer">
+            <input matInput placeholder="Telefonnummer" [(ngModel)]="phoneNumber">
           </mat-form-field>
         </div>
         <div class="row">
           <form>
-            <textarea matInput placeholder="Skills"></textarea>
+            <!-- <textarea matInput placeholder="Skills"></textarea> -->
           </form>
         </div>
         <div class="row">
