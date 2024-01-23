@@ -9,7 +9,7 @@
                 <input matInput type="text" [(ngModel)]="searchTerm" placeholder="Search">
             </mat-form-field>
 
-          <button class="employee-button">
+          <button (click)="onClick()" class="employee-button">
             <mat-icon class="add-icon">add</mat-icon>
             New Employee
           </button>

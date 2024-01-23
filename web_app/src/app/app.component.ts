@@ -22,22 +22,6 @@ export class AppComponent {
 
   cardData: MiniCard[] = [];
 
-  updateCards(newCardData: MiniCard[]) {
-    this.dataService.updateCards(newCardData);
-    console.log("updating cards")
-  }
-
-  addCard(title: string, backgroundImage: string, employeeModel: EmployeeModel): void {
-    const newCard: MiniCard = { title, backgroundImage, employeeModel};
-    this.cardData.push(newCard);
-    this.updateCards(this.cardData)
-  }
-
-  removeCard(employeeModel: EmployeeModel): void {
-    this.cardData = this.cardData.filter(card => card.employeeModel !== employeeModel); 
-    this.updateCards(this.cardData)  
-  }
-
   ngAfterViewInit(){ 
     this.apiService.getAllEmployees().then((data) => {  
       const updatePromises: Promise<void>[] = [];
@@ -55,7 +39,7 @@ export class AppComponent {
           Promise.all(updatePromises).then(() => {
             const card = this.sideNavComponent.steckbriefComponent.card
             const updatePromise = this.imageCaptureService.capture(card).then((data)=>{            
-              this.addCard('', data, employee);  
+              this.dataService.addCard(this.cardData, '', data, employee);  
             });   
             updatePromises.push(updatePromise);   
           });     

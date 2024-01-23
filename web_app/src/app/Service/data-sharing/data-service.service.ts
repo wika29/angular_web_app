@@ -65,6 +65,18 @@ export class DataService {
     this.miniCardSubject.next(newCardData);
   }
 
+  public addCard(cardData: MiniCard[], title: string, backgroundImage: string, employeeModel: EmployeeModel): void {
+    const newCard: MiniCard = { title, backgroundImage, employeeModel};
+    cardData.push(newCard);
+    this.updateCards(cardData)
+  }
+
+  public removeCard(cardData: MiniCard[],employeeModel: EmployeeModel): void {
+    cardData = cardData.filter(card => card.employeeModel !== employeeModel); 
+    this.updateCards(cardData)  
+  }
+
+
   
 
 

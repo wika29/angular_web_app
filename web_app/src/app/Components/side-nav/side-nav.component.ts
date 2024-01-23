@@ -10,8 +10,10 @@ import { debounceTime, distinctUntilChanged, switchMap , Subject, Observable, Be
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.css'],
 })
+
 export class SideNavComponent {
-  // @Input() cardData!: MiniCard[];
+  cardData$ = new BehaviorSubject<MiniCard[]>([]);
+  miniCardData$ = this.dataService.miniCardData$;
   @ViewChild(SteckbriefComponent) steckbriefComponent!: SteckbriefComponent;
   @ViewChild(MiniCardComponent) miniCardComponent!: MiniCardComponent;
 
@@ -20,7 +22,15 @@ export class SideNavComponent {
   filteredCardData: any[] = [];
   numberOfCardsSubject = new Subject<number>();
 
-  constructor() {}
+  constructor(private dataService: DataService) {
+    this.miniCardData$.subscribe((cards: MiniCard[]) => {
+      this.cardData$.next(cards);
+    });
+  }
+
+  onClick(){
+    this.steckbriefComponent.toggleOverlay()
+  }
 
   onSearchTermChange(term: string) {
     this.searchTerm$.next(term);

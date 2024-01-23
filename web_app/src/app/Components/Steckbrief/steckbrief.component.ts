@@ -33,7 +33,7 @@ export class SteckbriefComponent implements OnInit {
     this.dataService.getBigCardVisibility().subscribe((value) => (this.showOverlay = value));
   }
 
-  closeOverlay(){
+  toggleOverlay(){
    this.dataService.setBigCardVisibility(!this.showOverlay)
   }
 
