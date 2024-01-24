@@ -1,20 +1,17 @@
-import { Component, Input, ElementRef, ViewChild, OnInit, AfterViewInit} from '@angular/core';
-import { DataService } from 'src/app/Service/data-sharing/data-service.service';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {DataService} from 'src/app/Service/data-sharing/data-service.service';
 import {EmployeeModel} from "../../Model/PersonModel";
 import {ApiService} from "../../Service/API/swaggerConnection";
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { PopupComponent } from '../PopUp/pop-up/pop-up.component';
-import { ImageCaptureService } from 'src/app/Service/html2Image/image-capture.service';
+import {ImageCaptureService} from 'src/app/Service/html2Image/image-capture.service';
 
 @Component({
   selector: 'app-steckbrief',
   templateUrl: './steckbrief.component.html',
   styleUrls: ['./steckbrief.component.css'],
-  template: '<mat-card-content #steckbrief></mat-card-content>',
 })
 export class SteckbriefComponent implements OnInit, AfterViewInit {
   @Input() showOverlay: boolean = true;
-  @ViewChild('steckbrief', {static:false}) card!: ElementRef;  
+  @ViewChild('steckbrief', {static: false}) card!: ElementRef;
 
   lastName!: string;
   firstName!: string;
@@ -26,7 +23,7 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
   skills!: any[];
 
   constructor(private dataService: DataService, private apiService: ApiService, private capture: ImageCaptureService) {}
-  
+
   ngOnInit(): void {
     this.dataService.lastName$.subscribe((value) => (this.lastName = value));
     this.dataService.firstName$.subscribe((value) => (this.firstName = value));
@@ -43,17 +40,17 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
     this.dataService.cardRef = this.card;
     // this.dataService.getCardRef().subscribe((value)=> (this.card = value))
   }
-  
-  onSavePress() {     
+
+  onSavePress() {
     if(this.id != ""){
       let miniCard = this.dataService.getCardById(this.id)
       let employee = miniCard?.employeeModel
       if(miniCard && employee) {
         console.log("updating employee")
-        this.apiService.updateEmployee(false, employee.id, employee.requestData).then(response => {          
+        this.apiService.updateEmployee(false, employee.id, employee.requestData).then(response => {
           if(response.status == 200){
             this.dataService.openPopup("Benutzer wurde akutalisiert.")
-            this.toggleOverlay()     
+            this.toggleOverlay()
           }else{
             this.dataService.openPopup("Benutzer konnte nicht aktualisiert werden: " + JSON.stringify(response.status))
           }
@@ -89,7 +86,7 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
           this.dataService.openPopup("Fehler beim hinzugfügen des Bildes für die Benutzerkarte.");
         });
       }
-    };
+    }
   }
 
     createNewEmployee() {
@@ -106,11 +103,11 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
     }
 
     onDeletePress() {
-      const employee = this.dataService.getCardById(this.id)?.employeeModel;    
+      const employee = this.dataService.getCardById(this.id)?.employeeModel;
       if (employee) {
         console.log("to be deleted employee", employee)
         this.apiService.deleteEmployeeByID(false, employee.id)
-          .then(response => {           
+          .then(response => {
             console.log("Response delete:", response);
             if (response.status === 200 || response.status === 204) {
               // this.dataService.openPopup("Benutzer gelöscht." + JSON.stringify(response.status));
@@ -140,6 +137,6 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
     this.city = '';
     this.phone = '';
     this.skills = [];
-  } 
- 
+  }
+
 }

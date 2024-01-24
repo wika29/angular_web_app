@@ -1,11 +1,9 @@
-import { Component, ViewChild, Renderer2, Input, ElementRef, AfterViewInit } from '@angular/core';
-import { SteckbriefComponent } from '../Steckbrief/steckbrief.component';
-import { MiniCardComponent } from '../mini-card/mini-card.component';
-import { MiniCard } from '../mini-card/mini-card.component';
-import { DataService } from 'src/app/Service/data-sharing/data-service.service';
-import { debounceTime, distinctUntilChanged, switchMap , Subject, Observable, BehaviorSubject } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { of } from 'rxjs';
+import {Component, ViewChild} from '@angular/core';
+import {SteckbriefComponent} from '../Steckbrief/steckbrief.component';
+import {MiniCard, MiniCardComponent} from '../mini-card/mini-card.component';
+import {DataService} from 'src/app/Service/data-sharing/data-service.service';
+import {BehaviorSubject, debounceTime, distinctUntilChanged, of, switchMap} from 'rxjs';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-side-nav',
@@ -29,9 +27,9 @@ export class SideNavComponent {
       this.originalCardData = cards;
       this.cardData$.next(cards);
     });
-  }  
+  }
 
-  onClick(){       
+  onClick() {
     this.steckbriefComponent.resetFields()
     this.steckbriefComponent.toggleOverlay()
   }
@@ -46,25 +44,25 @@ export class SideNavComponent {
       distinctUntilChanged(),
       switchMap((formValue) => {
         console.log('Form value:', formValue);
-    
+
         const searchTerm = formValue.searchTerm.toLowerCase();
-    
-        let filteredData = searchTerm 
+
+        let filteredData = searchTerm
         if (searchTerm) {
           filteredData = this.cardData$.value.filter((card) =>
             card.employeeModel.firstName.toLowerCase().includes(searchTerm)
           );
           this.dataService.updateCards(filteredData);
-        } else {        
+        } else {
           // this.dataService.resetMiniCards();
         }
-    
+
         // console.log('Filtered data:', filteredData);
-    
-    
+
+
         return of(filteredData);
       })
-    ).subscribe();    
+    ).subscribe();
   }
 
 }
