@@ -22,20 +22,21 @@ export class SideNavComponent {
   filteredCards$ = new BehaviorSubject<MiniCard[]>([]);
   cardDataObserver$ = this.dataService.cardDataObserver$;
   filteredCardObserver$ = this.dataService.filterdCardsObserver$;
-  
+
   constructor(private dataService: DataService, private fb: FormBuilder) {
     this.cardDataObserver$.subscribe((cards: MiniCard[]) => {     
       this.cardData$.next(cards);
     });
     this.filteredCardObserver$.subscribe((cards: MiniCard[]) => {     
       this.filteredCards$.next(cards);
-    });
+    });  
   }
 
 
   onClick() {
-    this.steckbriefComponent.resetFields()
-    this.steckbriefComponent.toggleOverlay()
+    this.dataService.setDeleteVisibility(true);
+    this.steckbriefComponent.resetFields();
+    this.steckbriefComponent.toggleOverlay();
   }
 
 

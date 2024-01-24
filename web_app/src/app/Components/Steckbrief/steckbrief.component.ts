@@ -12,6 +12,7 @@ import { FormGroup, Validators, FormControl, ValidatorFn, ValidationErrors, Abst
 })
 export class SteckbriefComponent implements OnInit, AfterViewInit {
   @Input() showOverlay: boolean = true;
+  @Input() showDelete: boolean = true;
   @ViewChild('steckbrief', {static: false}) card!: ElementRef;
 
   lastName!: string;
@@ -47,6 +48,7 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
     this.dataService.phone$.subscribe((value) => {this.phone = value;this.steckBriefForm.get('phone')?.setValue(value);});
     this.dataService.skills$.subscribe((value) => {this.skills = value;this.steckBriefForm.get('skills')?.setValue(value);});
     this.dataService.getBigCardVisibility().subscribe((value) => {this.showOverlay = value;});
+    this.dataService.getDeleteVisibility().subscribe((value) => {this.showDelete = value; console.log("triggered delete visibility: ", value)});
   } 
 
   ngAfterViewInit(): void {

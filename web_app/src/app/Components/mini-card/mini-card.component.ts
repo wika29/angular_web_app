@@ -20,7 +20,7 @@ export class MiniCardComponent implements OnInit, OnDestroy  {
   filterCardDataObserver$ = this.dataService.filterdCardsObserver$;
   sharedData: any;
   showOverlay: boolean = true;  
-
+ 
   constructor(private dataService: DataService) {}  
   
   ngOnInit(): void {
@@ -34,6 +34,7 @@ export class MiniCardComponent implements OnInit, OnDestroy  {
   }  
 
   cardClicked(card: any): void {
+      this.dataService.setDeleteVisibility(false);
       if(this.showOverlay == true){
         const miniCard = card as MiniCard;
         this.dataService.updateData(miniCard.employeeModel)

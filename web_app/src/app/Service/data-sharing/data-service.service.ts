@@ -64,6 +64,14 @@ export class DataService {
     this.cardVisibility.next(value);
   }
 
+  private deleteVisibilty = new BehaviorSubject<boolean>(true);
+  getDeleteVisibility(): Observable<boolean> {
+    return this.deleteVisibilty.asObservable();
+  }
+  setDeleteVisibility(value: boolean): void {
+    this.deleteVisibilty.next(value);
+  }
+
   public cardRef!: ElementRef;
 
   private miniCardSubject = new BehaviorSubject<MiniCard[]>([]);

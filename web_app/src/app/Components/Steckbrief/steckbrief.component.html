@@ -54,9 +54,9 @@
           </form>
         </div>
         <div class="row">
-          <button mat-button id="delete-button" class="delete-button" (click)="onDeletePress()" [ngClass]="{'overlayHidden': showOverlay}">
+          <button mat-button id="delete-button" class="delete-button" (click)="onDeletePress()" [ngClass]="{'overlayHidden': showOverlay, 'overlayHidden2': showDelete}">
           <mat-icon class="delete-icon">delete</mat-icon>Löschen</button>
-          <button mat-button id="save-button" (click)="onSavePress()" [disabled]="steckBriefForm.invalid"  [ngClass]="{'overlayHidden': showOverlay}">Speichern</button>
+          <button mat-button id="save-button" (click)="onSavePress()" [disabled]="steckBriefForm.invalid"  [ngClass]="{'overlayHidden': showOverlay}" [ngStyle]="{'margin-left.px': showDelete ? 0 : 230 }">Speichern</button>
           <div *ngIf="steckBriefForm.invalid">
             <!-- <p>Bitte korigieren Sie folgende Fehler: </p> -->
             <!-- <ul>

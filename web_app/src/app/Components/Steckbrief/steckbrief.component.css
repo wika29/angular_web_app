@@ -20,6 +20,13 @@
   z-index: -1;
 }
 
+.overlayHidden2 {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  z-index: -1;
+}
+
 .rounded-image {
   border-radius: 50%;
   width: 100px;
@@ -69,8 +76,9 @@ button#save-button {
 
 .delete-button {
   display: flex;
-  align-items: center;
+  /* align-items: ; */
   color: red;
+  padding: 10px 20px;
 }
 
 .delete-icon {
@@ -87,6 +95,9 @@ button#save-button {
   padding: 10px 20px;
 }
 
+.toggleDelete{
+  margin-left: 0px;
+}
 
 .small-field {
   width: 50px;
