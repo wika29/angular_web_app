@@ -1,4 +1,4 @@
-# Installttion
+# Installation
 Um dieses Projekt nutzen zu können, ist Node.js vornöten
 
 Danach sollte
@@ -32,7 +32,8 @@ und dort
 
 auf Windows muss dafür die Dockerapp laufen. 
 
-Wen die grobe UI lädt kann es unter Umstädnen etwas dauern bis die Karten mit den Daten der Benutzer aktualisiert wird. 
+Wenn die grobe UI lädt, kann es unter Umständen etwas dauern, bis die Karten mit den Daten der Benutzer aktualisiert werden. 
+
 
 # Projekt Dokumentation
 
