@@ -23,9 +23,9 @@ export class AppComponent {
   cardData: MiniCard[] = [];
 
   ngAfterViewInit(){ 
-    this.apiService.getAllEmployees().then((data) => {  
-      const updatePromises: Promise<void>[] = [];
-      data.forEach(element => {
+    this.apiService.getAllEmployees().then((response) => {  
+      const updatePromises: Promise<void>[] = [];   
+      response.data.forEach((element: EmployeeModel) => {
           const employee = new EmployeeModel(element.id,
           element.firstName,
           element.lastName,
@@ -40,12 +40,8 @@ export class AppComponent {
             });   
             updatePromises.push(updatePromise);   
           });     
-        });
-
-        // console.log(this.sideNavComponent.appSteckbriefRef.nativeElement)        
-        // 
-      }); 
-      // this.sideNavComponent.removeClass()
+        });      
+      });      
     }
 }
 

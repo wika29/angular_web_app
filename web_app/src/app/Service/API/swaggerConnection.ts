@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { Axios, AxiosResponse } from 'axios';
 import { Injectable } from '@angular/core';
 
 export enum RequestMethod {
@@ -38,7 +38,7 @@ export class ApiService {
     }
   }
 
-  private async requestData(method: RequestMethod, useKeyCloak : boolean = false, substring :string = "", bodyData = {}) {    
+  private async requestData(method: RequestMethod, useKeyCloak : boolean = false, substring :string = "", bodyData = {}): Promise<AxiosResponse> {    
       let url: string;
       let response;
       if(useKeyCloak){
@@ -64,33 +64,32 @@ export class ApiService {
           case RequestMethod.DELETE: response = await axios.delete(url).catch((error) => console.error("Error during DELETE request: "+ error.message)); break;
         } 
       }  
-      if(response != undefined && response.status == 200){ 
-        return Promise.resolve(response.data);      
+      if(response && response.status == 200){
+       
+        return Promise.resolve(response);      
+      }else {       
+        return Promise.reject("Request failed with an undefined response");
       }
-      else if (response != undefined){
-        return "Status Code: " + response.status;
-      }
-      return "Unable to find data";
-  }
+    }
 
-  public newEmployee(useKeyCloak = false, body = {}): Promise<any[]> { 
-    return Promise.resolve(this.requestData(RequestMethod.POST, useKeyCloak, "", body));
+  public newEmployee(useKeyCloak = false, body = {}): Promise<AxiosResponse> { 
+    return this.requestData(RequestMethod.POST, useKeyCloak, "/", body);
   } 
   
-  public getEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> { 
-    return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak, "/" + id.toString()));
+  public getEmployeeByID(useKeyCloak = false, id: string): Promise<AxiosResponse> { 
+    return this.requestData(RequestMethod.GET, useKeyCloak, "/" + id.toString());
   } 
 
-  public getAllEmployees(useKeyCloak = false): Promise<any[]> { 
-    return Promise.resolve(this.requestData(RequestMethod.GET, useKeyCloak)); 
+  public getAllEmployees(useKeyCloak = false): Promise<AxiosResponse> { 
+    return this.requestData(RequestMethod.GET, useKeyCloak); 
   } 
 
-  public updateEmployee(useKeyCloak = false, id: number, body = {}): Promise<any[]> { 
-    return Promise.resolve(this.requestData(RequestMethod.PUT, useKeyCloak, "/" + id.toString(), body));
+  public updateEmployee(useKeyCloak = false, id: string, body = {}): Promise<AxiosResponse> { 
+    return this.requestData(RequestMethod.PUT, useKeyCloak, "/" + id.toString(), body);
   } 
 
-  public deleteEmployeeByID(useKeyCloak = false, id: number): Promise<any[]> { 
-    return Promise.resolve(this.requestData(RequestMethod.DELETE, useKeyCloak, "/" + id.toString()));
+  public deleteEmployeeByID(useKeyCloak = false, id: string): Promise<AxiosResponse> { 
+    return this.requestData(RequestMethod.DELETE, useKeyCloak, "/" + id.toString());
   } 
 
 }    

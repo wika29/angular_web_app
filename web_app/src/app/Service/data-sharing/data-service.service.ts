@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { EmployeeModel } from 'src/app/Model/PersonModel';
 import { MiniCard } from 'src/app/Components/mini-card/mini-card.component';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from 'src/app/Components/PopUp/pop-up/pop-up.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,9 @@ export class DataService {
   private postalCodeSubject = new BehaviorSubject<string>('');
   private citySubject = new BehaviorSubject<string>('');
   private phoneNumberSubject = new BehaviorSubject<string>('');
-  private skillsSubject = new BehaviorSubject<string>('');
+  private skillsSubject = new BehaviorSubject<any[]>([]);
+
+  constructor(private dialog: MatDialog){}
 
   firstName$ = this.firstNameSubject.asObservable();
   lastName$ = this.lastNameSubject.asObservable();
@@ -24,10 +28,6 @@ export class DataService {
   city$ = this.citySubject.asObservable();
   phoneNumber$ = this.phoneNumberSubject.asObservable();
   skills$ = this.skillsSubject.asObservable();
-
-  constructor() {
-    this.originalMiniCards = this.miniCardSubject.value.slice();    
-  }
 
   updateData(data: any): void {
     this.firstNameSubject.next(data.firstName);
@@ -63,12 +63,24 @@ export class DataService {
     this.cardVisibility.next(value);
   }
 
-  private originalMiniCards: MiniCard[] = [];
   private miniCardSubject = new BehaviorSubject<MiniCard[]>([]);
   miniCardData$ = this.miniCardSubject.asObservable();
   updateCards(newCardData: MiniCard[]) {
-    this.miniCardSubject.next(newCardData);
-    
+    this.miniCardSubject.next(newCardData);    
+  }
+
+  public updateSingleCard(updatedCard: MiniCard): void {
+    let cardData = this.miniCardSubject.value;
+    const index = cardData.findIndex(card => card.employeeModel.id === updatedCard.employeeModel.id);
+  
+    if (index !== -1) {
+      // Card found, update it
+      cardData[index] = updatedCard;
+      this.updateCards(cardData);
+    } else {
+      // Card not found, you can handle this case based on your requirements
+      console.error(`Card with id ${updatedCard.employeeModel.id} not found`);
+    }
   }
 
   public addCard(title: string, backgroundImage: string, employee: EmployeeModel): void {
@@ -76,15 +88,7 @@ export class DataService {
     let cardData = this.miniCardSubject.value
     const newCard: MiniCard = { title, backgroundImage, employeeModel: employee};
     cardData.push(newCard);
-    this.updateCards(cardData)
-  }
-
-  public resetMiniCards(): void {
-    this.originalMiniCards.forEach(element => {
-      console.log('originalMiniCards:', element);
-    });
-    this.updateCards(this.originalMiniCards);
-  }  
+    this.updateCards(cardData)  }
 
   public removeCard(employeeModel: EmployeeModel): void {
     let cardData = this.miniCardSubject.value
@@ -92,8 +96,22 @@ export class DataService {
     this.updateCards(cardData)  
   }
 
-
+  public getCardById(id: string): MiniCard | undefined {
+    const cardData = this.miniCardSubject.value;
+    return cardData.find(card => card.employeeModel.id === id);
+  }
   
+  public getCardByName(name: string): MiniCard | undefined {
+    const cardData = this.miniCardSubject.value;
+    return cardData.find(card => card.title === name);
+  }
+  
+
+  openPopup(message: string): void {
+    this.dialog.open(PopupComponent, {
+      data: { message },
+    });
+  }
 
 
 }

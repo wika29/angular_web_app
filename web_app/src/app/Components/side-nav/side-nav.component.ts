@@ -31,8 +31,9 @@ export class SideNavComponent {
     });
   }  
 
-  onClick(){
-
+  onClick(){       
+    this.steckbriefComponent.resetFields()
+    this.steckbriefComponent.toggleOverlay()
   }
 
   ngOnInit() {
@@ -55,7 +56,7 @@ export class SideNavComponent {
           );
           this.dataService.updateCards(filteredData);
         } else {        
-          this.dataService.resetMiniCards();
+          // this.dataService.resetMiniCards();
         }
     
         // console.log('Filtered data:', filteredData);
@@ -63,8 +64,7 @@ export class SideNavComponent {
     
         return of(filteredData);
       })
-    ).subscribe();
-    
+    ).subscribe();    
   }
 
 }

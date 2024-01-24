@@ -24,6 +24,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MiniCardComponent } from './Components/mini-card/mini-card.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PopupComponent } from './Components/PopUp/pop-up/pop-up.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SearchFieldComponent,
     SteckbriefComponent,
     SideNavComponent,
-    MiniCardComponent
+    MiniCardComponent,
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +57,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTooltipModule,
     MatFormFieldModule,
     FlexLayoutModule,
+    MatDialogModule,
   ],  
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
