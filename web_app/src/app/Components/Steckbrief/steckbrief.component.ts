@@ -1,5 +1,5 @@
-import { Component, Input, ElementRef, ViewChild, OnInit, AfterViewInit} from '@angular/core';
-import { DataService } from 'src/app/Service/data-sharing/data-service.service';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {DataService} from 'src/app/Service/data-sharing/data-service.service';
 import {EmployeeModel} from "../../Model/PersonModel";
 import {ApiService} from "../../Service/API/swaggerConnection";
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -11,11 +11,10 @@ import { FormGroup, Validators, FormControl, ValidatorFn, ValidationErrors, Abst
   selector: 'app-steckbrief',
   templateUrl: './steckbrief.component.html',
   styleUrls: ['./steckbrief.component.css'],
-  template: '<mat-card-content #steckbrief></mat-card-content>',
 })
 export class SteckbriefComponent implements OnInit, AfterViewInit {
   @Input() showOverlay: boolean = true;
-  @ViewChild('steckbrief', {static:false}) card!: ElementRef;  
+  @ViewChild('steckbrief', {static: false}) card!: ElementRef;
 
   lastName!: string;
   firstName!: string;
