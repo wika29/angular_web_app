@@ -122,7 +122,7 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
           })
           .catch(error => {
             console.error("Error deleting employee:", error);
-            this.dataService.openPopup("Fehler beim Löschen des Benutzers.");
+            this.dataService.openPopup("Fehler beim Löschen des Benutzers." +  error);
           });
       }
     }
