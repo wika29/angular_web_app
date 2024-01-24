@@ -1,10 +1,48 @@
+# Installttion
+Um dieses Projekt nutzen zu können, ist Node.js vornöten
+
+Danach sollte
+
+- npm install
+
+ausgeführt werden, um alle Dependencies für das Projekt herunterladen zu können. 
+Sollte dies nicht möglich sein, könnte man auch die benötigten, externen Pakete einzeln hinzufügen.
+
+- npm install axios
+- npm install cors
+- npm install html2canvas
+- npm install rxjs
+
+tslib und zone.js sind Komponenten, die automatisch hinzugefügt wurden.
+Mit 
+- cd .\web_app\
+
+ In den web-app Ordner wechseln und dort
+
+- ng serve --open  
+
+ausführen, um so die App zu starten.
+Für das Anzeigen und den Austausch von Daten wird das lokale Submodule benötigt, in dem ein Dockerfile für das Backend enthalten ist.
+
+- cd .\backend\employeemanagement_api_without_keycloak\docker\
+
+und dort 
+
+- docker compose up ausführen
+
+auf Windows muss dafür die Dockerapp laufen. 
+
+Wen die grobe UI lädt kann es unter Umstädnen etwas dauern bis die Karten mit den Daten der Benutzer aktualisiert wird. 
+
+# Projekt Dokumentation
+
 Dokumentation Angular-Projekt
 
--	In den Wireframes gibt es innerhalb eines Steckbriefes einen Button zum Aktualisieren. Dieser fällt in der Anwendung weg. Stattdessen kann man den Steckbrief jederzeit bearbeiten und sobald man auf den Speichern-Button drückt,
+In den Wireframes gibt es innerhalb eines Steckbriefes einen Button zum Aktualisieren. Dieser fällt in der Anwendung weg. Stattdessen kann man den Steckbrief jederzeit bearbeiten und sobald man auf den Speichern-Button drückt,
 werden die Einträge entweder aktualisiert. Sollte man über den Button „New Employee“ in der Side-bar-Navigation auf Speichern drücken, so wird ein neuer Employee angelegt.
 
 Verwendete Technologien:
-- axios:
+axios:
 Ein Promise-basiertes HTTP-Client-Tool für Browser und Node.js, das einfache API-Anfragen ermöglicht.
 
 Vereinfacht das Arbeiten mit HTTP-Anfragen durch Promises und bietet Funktionen wie automatische Umwandlung von JSON-Daten.
