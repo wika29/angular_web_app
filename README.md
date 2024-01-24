@@ -1,5 +1,6 @@
+
 # Installation
-Um dieses Projekt nutzen zu können, ist Node.js vornöten
+Um dieses Projekt nutzen zu können, ist Node.js vonnöten.
 
 Danach sollte
 
@@ -28,9 +29,8 @@ Für das Anzeigen und den Austausch von Daten wird das lokale Submodule benötig
 
 und dort 
 
-- docker compose up ausführen
-
-auf Windows muss dafür die Dockerapp laufen. 
+- docker compose up
+ausführen auf Windows muss dafür die Dockerapp laufen. 
 
 Wenn die grobe UI lädt, kann es unter Umständen etwas dauern, bis die Karten mit den Daten der Benutzer aktualisiert werden. 
 
