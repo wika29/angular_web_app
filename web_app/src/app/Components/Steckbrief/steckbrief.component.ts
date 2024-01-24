@@ -64,6 +64,7 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
   onSavePress() {  
     if (this.steckBriefForm.valid){   
       if(this.id != ""){
+        this.dataService.setBigCardVisibility(true)
         let miniCard = this.dataService.getCardById(this.id)
         let employee = miniCard?.employeeModel
         if(miniCard && employee) {
@@ -79,26 +80,26 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
             console.log("respons.status update", response.data)   
             if(response.status == 200 && employee){
               employee.id = response.data.id
+                 
               this.dataService.openPopup("Benutzer wurde akutalisiert.")
-              this.toggleOverlay()     
             }else{
               this.dataService.openPopup("Benutzer konnte nicht aktualisiert werden: " + JSON.stringify(response.status))
             }
           })
           .catch(error => {
             console.error('Error updating employee:', error);
-          });
-          this.toggleOverlay()
+          });         
         }
         else {
           console.error("Couldn't get employee model for PUT request!")
         }
       }
       else {
+        this.dataService.setBigCardVisibility(true)
         const employee = this.createNewEmployee()
-        console.log("create new employee: " + employee.toString())
+        // console.log("create new employee: " + employee.toString())
         if(employee){
-          console.log("create new employee")
+          // console.log("create new employee")
           this.capture.capture(this.card).then((image) => {
             this.apiService.newEmployee(false, employee.requestData).then((response) => {
               // console.log("Response create:", response);
@@ -106,7 +107,7 @@ export class SteckbriefComponent implements OnInit, AfterViewInit {
                 console.log("Response create headers:", response.data.id);
                 employee.id = response.data.id
                 this.dataService.addCard("",image,employee);
-                this.dataService.openPopup("Neuen benutzer hinzugefügt. ")
+                this.dataService.openPopup("Neuen benutzer hinzugefügt.")
               }else{
                 this.dataService.openPopup("Benutzer konnte nicht hinzugefügt werden: " + JSON.stringify(response.status) + JSON.stringify(response.headers))
               }

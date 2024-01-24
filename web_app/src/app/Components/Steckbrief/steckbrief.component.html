@@ -1,7 +1,6 @@
   <mat-card [ngClass]="{'overlayHidden': showOverlay}"  class="overlay">
-    <mat-card-content #steckbrief>
-      
-      <button mat-icon-button class="close-button" (click)="toggleOverlay()">
+    <mat-card-content #steckbrief>      
+      <button mat-icon-button class="close-button" (click)="toggleOverlay()" [ngClass]="{'overlayHidden': showOverlay}">
         <mat-icon>close</mat-icon>
       </button>
       <div [formGroup]="steckBriefForm" class="container">
@@ -19,7 +18,7 @@
           </mat-form-field>
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="Nachname" formControlName="lastName">
-            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Nachname ist erforderlich.</mat-error>
+            <mat-error *ngIf="steckBriefForm.get('lastName')?.hasError('required')">Nachname ist erforderlich.</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" class="input-field small-field">
             <input matInput placeholder="ID" formControlName="id" readonly>            
@@ -28,25 +27,25 @@
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="Straße" formControlName="street">
-            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Straße ist erforderlich.</mat-error>
+            <mat-error *ngIf="steckBriefForm.get('street')?.hasError('required')">Straße ist erforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="PLZ"  formControlName="postcode">
-            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Postleitzahl mit genau 5 Zaheln ist eforderlich.</mat-error>
+            <mat-error *ngIf="steckBriefForm.get('postcode')?.hasError('required')">Postleitzahl mit genau 5 Zaheln ist eforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="Ort" formControlName="city">
-            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Ort ist erforderlich.</mat-error>
+            <mat-error *ngIf="steckBriefForm.get('city')?.hasError('required')">Ort ist erforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="Telefonnummer" formControlName="phone">
-            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Telefonnummer ist erforderlich.</mat-error>
+            <mat-error *ngIf="steckBriefForm.get('phone')?.hasError('required')">Telefonnummer ist erforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">
@@ -55,9 +54,9 @@
           </form>
         </div>
         <div class="row">
-        <button mat-button id="delete-button" class="delete-button" (click)="onDeletePress()">
+          <button mat-button id="delete-button" class="delete-button" (click)="onDeletePress()" [ngClass]="{'overlayHidden': showOverlay}">
           <mat-icon class="delete-icon">delete</mat-icon>Löschen</button>
-          <button mat-button id="save-button" (click)="onSavePress()" [disabled]="steckBriefForm.invalid">Speichern</button>
+          <button mat-button id="save-button" (click)="onSavePress()" [disabled]="steckBriefForm.invalid"  [ngClass]="{'overlayHidden': showOverlay}">Speichern</button>
           <div *ngIf="steckBriefForm.invalid">
             <!-- <p>Bitte korigieren Sie folgende Fehler: </p> -->
             <!-- <ul>

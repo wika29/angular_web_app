@@ -1,34 +1,68 @@
-# Neu hier?
-Wenn du eine Fehlermeldung wie: "You seem to not be depending on "@angular/core" hast,
-run: "npm install" im projectFolder
+# Installttion
+Um dieses Projekt nutzen zu können, ist Node.js vornöten
 
-Angenommen deine Commands funktionieren nicht und du bekommst eine Fehlermeldung wie: 
-"angular this command is not available when running piutside a workspace",
-dann stelle sicher das du im richtigen ProjectFolder bist. 
-# WebApp
+Danach sollte
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+- npm install
 
-## Development server
+ausgeführt werden, um alle Dependencies für das Projekt herunterladen zu können. 
+Sollte dies nicht möglich sein, könnte man auch die benötigten, externen Pakete einzeln hinzufügen.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- npm install axios
+- npm install cors
+- npm install html2canvas
+- npm install rxjs
 
-## Code scaffolding
+tslib und zone.js sind Komponenten, die automatisch hinzugefügt wurden.
+Mit 
+- cd .\web_app\
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ In den web-app Ordner wechseln und dort
 
-## Build
+- ng serve --open  
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+ausführen, um so die App zu starten.
+Für das Anzeigen und den Austausch von Daten wird das lokale Submodule benötigt, in dem ein Dockerfile für das Backend enthalten ist.
 
-## Running unit tests
+- cd .\backend\employeemanagement_api_without_keycloak\docker\
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+und dort 
 
-## Running end-to-end tests
+- docker compose up ausführen
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+auf Windows muss dafür die Dockerapp laufen. 
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Projekt Dokumentation
+
+Dokumentation Angular-Projekt
+
+In den Wireframes gibt es innerhalb eines Steckbriefes einen Button zum Aktualisieren. Dieser fällt in der Anwendung weg. Stattdessen kann man den Steckbrief jederzeit bearbeiten und sobald man auf den Speichern-Button drückt,
+werden die Einträge entweder aktualisiert. Sollte man über den Button „New Employee“ in der Side-bar-Navigation auf Speichern drücken, so wird ein neuer Employee angelegt.
+
+Verwendete Technologien:
+axios:
+Ein Promise-basiertes HTTP-Client-Tool für Browser und Node.js, das einfache API-Anfragen ermöglicht.
+
+Vereinfacht das Arbeiten mit HTTP-Anfragen durch Promises und bietet Funktionen wie automatische Umwandlung von JSON-Daten.
+
+-cors:
+Ein Node.js-Paket für die Behandlung von Cross-Origin Resource Sharing (CORS) in Webanwendungen.
+Ermöglicht das kontrollierte Teilen von Ressourcen zwischen verschiedenen Domains, wodurch Cross-Origin-Anfragen sicherer und effizienter werden.
+(Verschiebung von Inhalten einer Komponente zu einer anderen)
+
+-html2canvas:
+Eine JavaScript-Bibliothek, die es ermöglicht, Screenshots von HTML-Elementen im Browser zu erstellen.
+Nützlich für die Generierung von Bildern aus dem DOM, z.B. für Screenshots von bestimmten Bereichen in einer Webanwendung.
+
+-rxjs:
+Eine Bibliothek für reaktive Programmierung, die auf Observables basiert.
+Vereinfacht die Behandlung von asynchronen Ereignissen und Datenströmen, erleichtert die Verkettung und Transformation von Daten.
+
+-tslib:
+Ein TypeScript-Hilfspaket, das gemeinsame Hilfsfunktionen für generierten TypeScript-Code bereitstellt.
+Verbessert die Effizienz und Kompaktheit von TypeScript-Code, indem es allgemeine Funktionen und Hilfsklassen bereitstellt.
+
+-zone.js:
+Eine Bibliothek für das Patchen von JavaScript-Laufzeitumgebungen, um asynchrone Operationen zu verfolgen und zu koordinieren.

@@ -36,13 +36,16 @@ export class AppComponent {
           element.phone,
           // element.skillSet
           )
+          Promise.all(updatePromises).then(()=> {
+              this.dataService.updateSteckbrief(employee)
+          }).catch((err) => console.error("error during value assignment to card at start: " + err));
           Promise.all(updatePromises).then(() => {
             const card = this.sideNavComponent.steckbriefComponent.card
             const updatePromise = this.imageCaptureService.capture(card).then((data)=>{            
               this.dataService.addCard('', data, employee);  
             });   
             updatePromises.push(updatePromise);   
-          });     
+          }).catch((err) => console.error("error during rendering images: " + err));     
         });      
       });      
     }
