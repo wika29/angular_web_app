@@ -42,9 +42,6 @@
   right: 10px;
 }
 
-
-
-
 mat-form-field {
   border-radius: 40px;
   width: 200px;
@@ -101,4 +98,9 @@ button#save-button {
   cursor: not-allowed; /* Ändern des Cursors für schreibgeschützte Eingabefelder */
 }
 
-
+.alert div {
+  background-color: #fed3d3;
+  color: #820000;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}

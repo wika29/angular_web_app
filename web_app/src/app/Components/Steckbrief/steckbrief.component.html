@@ -1,41 +1,47 @@
   <mat-card [ngClass]="{'overlayHidden': showOverlay}"  class="overlay">
     <mat-card-content #steckbrief>
+      
       <button mat-icon-button class="close-button" (click)="toggleOverlay()">
         <mat-icon>close</mat-icon>
       </button>
-      <div class="container">
+      <div [formGroup]="steckBriefForm" class="container">
         <div class="row">
           <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
+          <!-- DEBUG -->
+          <button mat-button  (click)="onTestButtonClick()">Test</button>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Vorname" [(ngModel)]="firstName">
+            <input matInput placeholder="Vorname" formControlName="firstName">
+            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Vorname ist erforderlich.</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Nachname" [(ngModel)]="lastName">
+            <input matInput placeholder="Nachname" formControlName="lastName">
+            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Nachname ist erforderlich.</mat-error>
           </mat-form-field>
           <mat-form-field appearance="fill" class="input-field small-field">
-            <input matInput placeholder="ID" [(ngModel)]="id" readonly>
+            <input matInput placeholder="ID" formControlName="id" readonly>            
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Straße" [(ngModel)]="street">
+            <input matInput placeholder="Straße" formControlName="street">
+            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Straße ist erforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="PLZ"  [(ngModel)]="postcode">
+            <input matInput placeholder="PLZ"  formControlName="postcode">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Ort" [(ngModel)]="city">
+            <input matInput placeholder="Ort" formControlName="city">
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
-            <input matInput placeholder="Telefonnummer" [(ngModel)]="phone">
+            <input matInput placeholder="Telefonnummer" formControlName="phone">
           </mat-form-field>
         </div>
         <div class="row">
@@ -46,7 +52,19 @@
         <div class="row">
         <button mat-button id="delete-button" class="delete-button" (click)="onDeletePress()">
           <mat-icon class="delete-icon">delete</mat-icon>Löschen</button>
-        <button mat-button id="save-button" (click)="onSavePress()">Speichern</button>
+          <button mat-button id="save-button" (click)="onSavePress()" [disabled]="steckBriefForm.invalid">Speichern</button>
+          <div *ngIf="steckBriefForm.invalid">
+            <!-- <p>Bitte korigieren Sie folgende Fehler: </p> -->
+            <!-- <ul>
+              <ng-container *ngFor="let controlName of steckBriefForm.errors | keyvalue">
+                <ng-container *ngIf="steckBriefForm.get(controlName.key)?.invalid ">
+                  <li>
+                    {{ getErrorMessage(controlName.key) }}
+                  </li>
+                </ng-container>
+              </ng-container>
+            </ul> -->
+          </div>
       </div>
       </div>
     </mat-card-content>

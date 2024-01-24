@@ -31,6 +31,16 @@ export class EmployeeModel {
         };
     }
 
+    updateEmployee(lastName?: string, firstName?: string,street?: string, postcode?: string, city?: string, phone?: string, skillSet?: any[]){
+        this.lastName = lastName ?? this.lastName;
+        this.firstName = firstName ?? this.firstName;
+        this.street = street ?? this.street;
+        this.postcode = postcode ?? this.postcode;
+        this.city = city ?? this.city;
+        this.phone = phone ?? this.phone;
+        this.skillSet = skillSet ?? this.skillSet;
+    }
+
     public toString(): string {
         return `User Details:\nID: ${this.id}\nLast Name: ${this.lastName}\nFirst Name: ${this.firstName}\nStreet: ${this.street}\nPostcode: ${this.postcode}\nCity: ${this.city}\nPhone: ${this.phone}\nSkill Set: ${this.skillSet}`;
     }
