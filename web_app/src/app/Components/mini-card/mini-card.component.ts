@@ -13,11 +13,11 @@ export interface MiniCard {
   selector: 'app-mini-card',
   templateUrl: './mini-card.component.html',
   styleUrls: ['./mini-card.component.css'],
-  // template: `<mat-card class="custom-card"></mat-card>`,
 })
 export class MiniCardComponent implements OnInit, OnDestroy  {
   cardData$ = new BehaviorSubject<any[]>([]);
-  miniCardData$ = this.dataService.miniCardData$;
+  cardDataObserver$ = this.dataService.cardDataObserver$;
+  filterCardDataObserver$ = this.dataService.filterdCardsObserver$;
   sharedData: any;
   showOverlay: boolean = true;  
 
@@ -25,7 +25,10 @@ export class MiniCardComponent implements OnInit, OnDestroy  {
   
   ngOnInit(): void {
     this.dataService.getBigCardVisibility().subscribe((value) => (this.showOverlay = value));
-    this.miniCardData$.subscribe((cards: MiniCard[]) => {
+    this.cardDataObserver$.subscribe((cards: MiniCard[]) => {
+      this.cardData$.next(cards);
+    });
+    this.filterCardDataObserver$.subscribe((cards: MiniCard[]) => {
       this.cardData$.next(cards);
     });
   }  

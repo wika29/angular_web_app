@@ -12,57 +12,58 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 
 export class SideNavComponent {
-  cardData$ = new BehaviorSubject<MiniCard[]>([]);
-  miniCardData$ = this.dataService.miniCardData$;
   @ViewChild(SteckbriefComponent) steckbriefComponent!: SteckbriefComponent;
   @ViewChild(MiniCardComponent) miniCardComponent!: MiniCardComponent;
+  
   searchForm!: FormGroup;
-
   searchTerm: string = '';
-  originalCardData: MiniCard[] = [];
-
-
+  
+  cardData$ = new BehaviorSubject<MiniCard[]>([]);
+  filteredCards$ = new BehaviorSubject<MiniCard[]>([]);
+  cardDataObserver$ = this.dataService.cardDataObserver$;
+  filteredCardObserver$ = this.dataService.filterdCardsObserver$;
+  
   constructor(private dataService: DataService, private fb: FormBuilder) {
-    this.miniCardData$.subscribe((cards: MiniCard[]) => {
-      this.originalCardData = cards;
+    this.cardDataObserver$.subscribe((cards: MiniCard[]) => {     
       this.cardData$.next(cards);
     });
+    this.filteredCardObserver$.subscribe((cards: MiniCard[]) => {     
+      this.filteredCards$.next(cards);
+    });
   }
+
 
   onClick() {
     this.steckbriefComponent.resetFields()
     this.steckbriefComponent.toggleOverlay()
   }
 
+
+  //Suche
   ngOnInit() {
     this.searchForm = this.fb.group({
       searchTerm: [''],
     });
-
+    
     this.searchForm.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((formValue) => {
-        console.log('Form value:', formValue);
-
-        const searchTerm = formValue.searchTerm.toLowerCase();
-
-        let filteredData = searchTerm
-        if (searchTerm) {
-          filteredData = this.cardData$.value.filter((card) =>
+        const searchTerm = formValue.searchTerm.toLowerCase();        
+        if (searchTerm) {     
+          let filteredData = this.cardData$.value.filter((card) =>
             card.employeeModel.firstName.toLowerCase().includes(searchTerm)
-          );
-          this.dataService.updateCards(filteredData);
-        } else {
-          // this.dataService.resetMiniCards();
-        }
-
-        // console.log('Filtered data:', filteredData);
-
-
-        return of(filteredData);
+          );        
+          this.dataService.updateFilteredCards(filteredData)
+          return of(filteredData);
+        } else {        
+          this.dataService.updateFilteredCards(this.cardData$.value);
+          return of(this.cardData$.value)
+        }   
       })
     ).subscribe();
   }
 
+
 }
+

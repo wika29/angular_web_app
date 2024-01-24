@@ -7,9 +7,11 @@
       <div [formGroup]="steckBriefForm" class="container">
         <div class="row">
           <img src="assets\images\profile_picture_missing.png" class="rounded-image" />
-          <!-- DEBUG -->
+        </div> 
+        <!-- DEBUG -->
+        <!-- <div class="row">
           <button mat-button  (click)="onTestButtonClick()">Test</button>
-        </div>
+        </div> -->
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="Vorname" formControlName="firstName">
@@ -32,16 +34,19 @@
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="PLZ"  formControlName="postcode">
+            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Postleitzahl mit genau 5 Zaheln ist eforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="Ort" formControlName="city">
+            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Ort ist erforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">
           <mat-form-field appearance="fill" class="input-field">
             <input matInput placeholder="Telefonnummer" formControlName="phone">
+            <mat-error *ngIf="steckBriefForm.get('firstName')?.hasError('required')">Telefonnummer ist erforderlich.</mat-error>
           </mat-form-field>
         </div>
         <div class="row">

@@ -67,10 +67,17 @@ export class DataService {
   public cardRef!: ElementRef;
 
   private miniCardSubject = new BehaviorSubject<MiniCard[]>([]);
-  miniCardData$ = this.miniCardSubject.asObservable();
+  cardDataObserver$ = this.miniCardSubject.asObservable();
   updateCards(newCardData: MiniCard[]) {
     this.miniCardSubject.next(newCardData);
   }
+
+  private filteredMiniCardSubject = new BehaviorSubject<MiniCard[]>([]);
+  filterdCardsObserver$ = this.filteredMiniCardSubject.asObservable();
+  updateFilteredCards(newCardData: MiniCard[]) {
+    this.filteredMiniCardSubject.next(newCardData);
+  }
+  
 
   public updateSingleCard(updatedCard: MiniCard): void {
     let cardData = this.miniCardSubject.value;

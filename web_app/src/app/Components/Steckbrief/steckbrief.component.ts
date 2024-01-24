@@ -2,8 +2,6 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@a
 import {DataService} from 'src/app/Service/data-sharing/data-service.service';
 import {EmployeeModel} from "../../Model/PersonModel";
 import {ApiService} from "../../Service/API/swaggerConnection";
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { PopupComponent } from '../PopUp/pop-up/pop-up.component';
 import { ImageCaptureService } from 'src/app/Service/html2Image/image-capture.service';
 import { FormGroup, Validators, FormControl, ValidatorFn, ValidationErrors, AbstractControl, FormBuilder} from '@angular/forms';
 
