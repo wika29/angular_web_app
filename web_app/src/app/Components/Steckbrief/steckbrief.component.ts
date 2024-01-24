@@ -46,10 +46,16 @@ export class SteckbriefComponent implements OnInit {
         console.log("updating employee")
         this.apiService.updateEmployee(false, employee.id, employee.requestData).then(response => {
           this.dataService.openPopup(JSON.stringify(response.status))
+          if(response.status == 200)
+            this.dataService.openPopup("Benutzer wurde akutalisiert. Status: ")
+          else{
+            this.dataService.openPopup("Benutzer konnte nicht aktualisiert werden: " + JSON.stringify(response.status))
+          }
         })
         .catch(error => {
           console.error('Error:', error);
         });
+        this.toggleOverlay()
       }
       else{
         console.error("Couldn't get employee model for PUT request!")
@@ -60,10 +66,15 @@ export class SteckbriefComponent implements OnInit {
       if(employee){
         console.log("create new employee")
         this.dataService.addCard("","",employee)
-        this.apiService.newEmployee(false, employee.requestData).then(response =>
-          this.dataService.openPopup(JSON.stringify(response.status))
-          )};
-        };
+        this.apiService.newEmployee(false, employee.requestData).then(response =>{
+          if(response.status == 200)
+            this.dataService.openPopup("Neuen benutzer hinzugefügt. ")
+          else{
+            this.dataService.openPopup("Benutzer konnte nicht hinzugefügt werden: " + JSON.stringify(response.status))
+          }
+        })};
+        this.toggleOverlay();
+      };
     }
 
     createNewEmployee() {
@@ -80,14 +91,17 @@ export class SteckbriefComponent implements OnInit {
     }
 
     onDeletePress() {
-      console.log("hello")
       let employee = this.dataService.getCardById(this.id)?.employeeModel
-      if(employee != undefined){
-        this.apiService.deleteEmployeeByID(false, employee.id).then(response =>
-          this.dataService.openPopup(JSON.stringify(response.data))
-          )
+      if(employee){
+        this.apiService.deleteEmployeeByID(false, employee.id).then(response =>{
+          if(response.status == 200)
+            this.dataService.openPopup("Benutzer gelöscht." + JSON.stringify(response.status))
+          else{
+            this.dataService.openPopup("Benutzer konnte nicht gelöscht werden! Status: " + JSON.stringify(response.status))
+          }
+          })
           this.dataService.removeCard(employee)
-          console.log("löschen employee id: " + employee)
+          this.toggleOverlay()
         }
     }
 
