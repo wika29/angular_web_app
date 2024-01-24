@@ -1,17 +1,17 @@
 export class EmployeeModel {   
     public id: string;
-    public firstName: string;
     public lastName: string;
+    public firstName: string;
     public street: string;
     public postcode: string;
     public city: string;
     public phone: string;
     public skillSet?: any[];
 
-    constructor(id: string, firstName: string, lastName: string, street: string, postcode: string, city: string, phone: string, skillSet?: any[]) {
+    constructor(id: string, lastName: string, firstName: string,street: string, postcode: string, city: string, phone: string, skillSet?: any[]) {
         this.id = id;
-        this.firstName = firstName;
         this.lastName = lastName;
+        this.firstName = firstName;
         this.street = street;
         this.postcode = postcode;
         this.city = city;
@@ -32,6 +32,6 @@ export class EmployeeModel {
     }
 
     public toString(): string {
-        return `User Details:\nID: ${this.id}\nFirst Name: ${this.firstName}\nLast Name: ${this.lastName}\nStreet: ${this.street}\nPostcode: ${this.postcode}\nCity: ${this.city}\nPhone: ${this.phone}\nSkill Set: ${this.skillSet}`;
+        return `User Details:\nID: ${this.id}\nLast Name: ${this.lastName}\nFirst Name: ${this.firstName}\nStreet: ${this.street}\nPostcode: ${this.postcode}\nCity: ${this.city}\nPhone: ${this.phone}\nSkill Set: ${this.skillSet}`;
     }
 }

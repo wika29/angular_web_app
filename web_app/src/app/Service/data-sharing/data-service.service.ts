@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { EmployeeModel } from 'src/app/Model/PersonModel';
 import { MiniCard } from 'src/app/Components/mini-card/mini-card.component';
@@ -9,8 +9,8 @@ import { PopupComponent } from 'src/app/Components/PopUp/pop-up/pop-up.component
   providedIn: 'root'
 })
 export class DataService {
-  private firstNameSubject = new BehaviorSubject<string>('');
   private lastNameSubject = new BehaviorSubject<string>('');
+  private firstNameSubject = new BehaviorSubject<string>('');
   private idSubject = new BehaviorSubject<string>('');
   private streetSubject = new BehaviorSubject<string>('');
   private postalCodeSubject = new BehaviorSubject<string>('');
@@ -18,33 +18,34 @@ export class DataService {
   private phoneNumberSubject = new BehaviorSubject<string>('');
   private skillsSubject = new BehaviorSubject<any[]>([]);
 
-  constructor(private dialog: MatDialog){}
-
-  firstName$ = this.firstNameSubject.asObservable();
+  
+  constructor(private dialog: MatDialog){}  
+  
   lastName$ = this.lastNameSubject.asObservable();
+  firstName$ = this.firstNameSubject.asObservable();
   id$ = this.idSubject.asObservable();
   street$ = this.streetSubject.asObservable();
-  postalCode$ = this.postalCodeSubject.asObservable();
+  postcode$ = this.postalCodeSubject.asObservable();
   city$ = this.citySubject.asObservable();
-  phoneNumber$ = this.phoneNumberSubject.asObservable();
+  phone$ = this.phoneNumberSubject.asObservable();
   skills$ = this.skillsSubject.asObservable();
-
+  
   updateData(data: any): void {
-    this.firstNameSubject.next(data.firstName);
     this.lastNameSubject.next(data.lastName);
+    this.firstNameSubject.next(data.firstName);
     this.idSubject.next(data.id);
     this.streetSubject.next(data.street);
-    this.postalCodeSubject.next(data.postalCode);
+    this.postalCodeSubject.next(data.postcode);
     this.citySubject.next(data.city);
-    this.phoneNumberSubject.next(data.phoneNumber);
+    this.phoneNumberSubject.next(data.phone);
     this.skillsSubject.next(data.skills);
   }
-
+  
   updateSteckbrief(employee : EmployeeModel): void {
-    console.log("update employee: ", employee.toString())
+    // console.log("update employee: ", employee.toString())
     return this.updateData({
-      firstName: employee.firstName,
       lastName: employee.lastName,
+      firstName: employee.firstName,
       id: employee.id,
       street: employee.street,
       postalCode: employee.postcode,
@@ -58,10 +59,11 @@ export class DataService {
   getBigCardVisibility(): Observable<boolean> {
     return this.cardVisibility.asObservable();
   }
-
   setBigCardVisibility(value: boolean): void {
     this.cardVisibility.next(value);
   }
+  
+  public cardRef!: ElementRef;
 
   private miniCardSubject = new BehaviorSubject<MiniCard[]>([]);
   miniCardData$ = this.miniCardSubject.asObservable();
@@ -72,13 +74,10 @@ export class DataService {
   public updateSingleCard(updatedCard: MiniCard): void {
     let cardData = this.miniCardSubject.value;
     const index = cardData.findIndex(card => card.employeeModel.id === updatedCard.employeeModel.id);
-  
-    if (index !== -1) {
-      // Card found, update it
+    if (index !== -1) {   
       cardData[index] = updatedCard;
       this.updateCards(cardData);
-    } else {
-      // Card not found, you can handle this case based on your requirements
+    } else {   
       console.error(`Card with id ${updatedCard.employeeModel.id} not found`);
     }
   }
@@ -99,8 +98,7 @@ export class DataService {
   public getCardById(id: string): MiniCard | undefined {
     const cardData = this.miniCardSubject.value;
     return cardData.find(card => card.employeeModel.id === id);
-  }
-  
+  }  
   public getCardByName(name: string): MiniCard | undefined {
     const cardData = this.miniCardSubject.value;
     return cardData.find(card => card.title === name);

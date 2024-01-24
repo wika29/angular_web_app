@@ -40,7 +40,7 @@ export class ApiService {
 
   private async requestData(method: RequestMethod, useKeyCloak : boolean = false, substring :string = "", bodyData = {}): Promise<AxiosResponse> {    
       let url: string;
-      let response;
+      let axiosReponse: Promise<AxiosResponse>;
       if(useKeyCloak){
         url = this.baseUrlKC + "/employees" + substring;
         let access_token = await this.getAccessToken();
@@ -49,27 +49,30 @@ export class ApiService {
           "Authorization" : `Bearer ${access_token}`
         }
         switch(method){
-          default: response = await axios.get(url, {headers}).catch((error) => console.error("Error during KeyCloak GET request: "+ error.message)); break;
-          case RequestMethod.POST: response = await axios.post(url, bodyData, {headers}).catch((error) => console.error("Error during KeyCloak POST request: "+ error.message)); break;
-          case RequestMethod.PUT: response = await axios.put(url, bodyData, {headers}).catch((error) => console.error("Error during KeyCloak UPDATE request: "+ error.message)); break;
-          case RequestMethod.DELETE: response = await axios.delete(url, {headers}).catch((error) => console.error("Error during KeyCloak DELETE request: "+ error.message)); break;
+          default: axiosReponse = axios.get(url, {headers}).catch((error) => {console.error("Error during KeyCloak GET request: "+ error.message); return Promise.reject(error);}); break;
+          case RequestMethod.POST: axiosReponse = axios.post(url, bodyData, {headers}).catch((error) => {console.error("Error during KeyCloak POST request: "+ error.message); return Promise.reject(error);}); break;
+          case RequestMethod.PUT: axiosReponse = axios.put(url, bodyData, {headers}).catch((error) =>{ console.error("Error during KeyCloak UPDATE request: "+ error.message); return Promise.reject(error);}); break;
+          case RequestMethod.DELETE: axiosReponse = axios.delete(url, {headers}).catch((error) => {console.error("Error during KeyCloak DELETE request: "+ error.message); return Promise.reject(error);}); break;
         }
       }
       else{
         url = this.baseUrl + "/employees" + substring;
         switch(method){
-          default: response = await axios.get(url).catch((error) => console.error("Error during GET request: "+ error.message)); break;
-          case RequestMethod.POST: response = await axios.post(url, bodyData).catch((error) => console.error("Error during POST request: "+ error.message)); break;
-          case RequestMethod.PUT: response = await axios.put(url, bodyData).catch((error) => console.error("Error during UPDATE request: "+ error.message)); break;
-          case RequestMethod.DELETE: response = await axios.delete(url).catch((error) => console.error("Error during DELETE request: "+ error.message)); break;
+          default: axiosReponse = axios.get(url).catch((error) => {console.error("Error during GET request: "+ error.message); return Promise.reject(error);}); break;
+          case RequestMethod.POST: axiosReponse = axios.post(url, bodyData).catch((error) => {console.error("Error during POST request: "+ error.message); return Promise.reject(error);}); break;
+          case RequestMethod.PUT: axiosReponse = axios.put(url, bodyData).catch((error) =>{ console.error("Error during UPDATE request: "+ error.message); return Promise.reject(error);}); break;
+          case RequestMethod.DELETE: axiosReponse = axios.delete(url).catch((error) =>{ console.error("Error during DELETE request: "+ error.message); return Promise.reject(error);}); break;
         } 
-      }  
-      if(response && response.status == 200){
-       
-        return Promise.resolve(response);      
-      }else {       
-        return Promise.reject("Request failed with an undefined response");
       }
+      return axiosReponse.then(
+        (response) => response,
+        (error) => {
+          let message = "Couldn't read Axios response: ";
+          console.error(message + error);
+          throw error; // Rethrow the error to propagate it to the caller
+        }
+      );
+    
     }
 
   public newEmployee(useKeyCloak = false, body = {}): Promise<AxiosResponse> { 

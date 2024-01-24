@@ -26,13 +26,16 @@ export class AppComponent {
     this.apiService.getAllEmployees().then((response) => {  
       const updatePromises: Promise<void>[] = [];   
       response.data.forEach((element: EmployeeModel) => {
-          const employee = new EmployeeModel(element.id,
-          element.firstName,
+          const employee = new EmployeeModel(
+          element.id,
           element.lastName,
+          element.firstName,
           element.street,
           element.postcode,
           element.city,
-          element.phone)
+          element.phone,
+          // element.skillSet
+          )
           Promise.all(updatePromises).then(() => {
             const card = this.sideNavComponent.steckbriefComponent.card
             const updatePromise = this.imageCaptureService.capture(card).then((data)=>{            
